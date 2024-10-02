@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import View
 
-def home(request):
-    return HttpResponse("Bem-vindo ao SportSync!")
-
+class HomeView(View):
+    template_name = 'home.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)
