@@ -13,3 +13,9 @@ class LoginView(View):
     
     def get(self, request):
         return render(request, self.template_name)
+    
+class LoginEmailView(View):
+    template_name = 'login-email.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)

@@ -14,9 +14,9 @@
             <img src="{% static 'img/logo-home.png' %}" alt="Logo Login" />  <!-- Logo -->
             <h2>Faça o login ou registre-se em segundos</h2>
             <p>Use seu e-mail ou outra plataforma de identificação para entrar no SportSync</p>
-            <button>Continuar com o Google</button>
-            <button>Continuar com o Facebook</button>
-            <button>Continuar com o Email</button>
+            <button onclick="location.href='#'">Continuar com o Google</button> <!-- Placeholder -->
+            <button onclick="location.href='#'">Continuar com o Facebook</button> <!-- Placeholder -->
+            <button onclick="location.href='{% url 'login-email' %}'">Continuar com o Email</button> <!-- Redireciona para login-email -->
             <a href="#">Cadastre-se manualmente</a>
         </div>
     </div>

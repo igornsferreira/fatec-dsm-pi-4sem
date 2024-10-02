@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página de Login</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/login-email.css' %}">  
+    </head>    
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Login</h2>
+            <p>Digite o usuário e senha para entrar na conta</p>
+            <img src="{% static 'img/logo-home.png' %}" alt="Logo Login" />  <!-- Logo -->
+        </div>
+        <div class="right-panel">
+            <span class="close-btn" role="button" tabindex="0" aria-label="Fechar">×</span>
+            <h3>USUÁRIO</h3>
+            <input type="text" name="username" aria-label="Usuário" placeholder="Digite seu usuário" required/>
+            <h3>SENHA</h3>
+            <input type="password" name="password" aria-label="Senha" placeholder="Digite sua senha" required/>
+            <button type="submit">Entrar</button>
+            <a href="#">Esqueci minha senha</a>
+        </div>
+    </div>
+</body>
+</html>
