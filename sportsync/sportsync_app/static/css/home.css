@@ -38,10 +38,12 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 50px 20px;
+    font-weight: normal;
 }
 
 .about-section .text {
     max-width: 50%;
+    font-weight: normal;
 }
 
 .about-section h2 {
@@ -62,7 +64,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold; 
+    font-weight: normal; 
 }
 
 .about-section .image {
@@ -79,11 +81,11 @@ body {
 }
 
 .about-section .ellipse {
-    width: 245px; 
-    height: 247px; 
+    width: 295px; 
+    height: 297px; 
     position: absolute; 
     top: 50%; 
-    left: 23px; 
+    left: 13px; 
     transform: translateY(-50%); 
     border-radius: 50%; 
     background: rgba(217, 152, 22, 1); 
