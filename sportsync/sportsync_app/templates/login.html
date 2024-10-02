@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="border">
+        <div class="container">
+            <img src="{% static 'img/logo-home.png' %}" alt="Logo Login" />  <!-- Logo -->
+            <h2>Faça o login ou registre-se em segundos</h2>
+            <p>Use seu e-mail ou outra plataforma de identificação para entrar no SportSync</p>
+            <button>Continuar com o Google</button>
+            <button>Continuar com o Facebook</button>
+            <button>Continuar com o Email</button>
+            <a href="#">Cadastre-se manualmente</a>
+        </div>
+    </div>
+</body>
+</html>

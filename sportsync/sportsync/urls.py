@@ -5,4 +5,5 @@ from sportsync_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),
+    path('login/', views.LoginView.as_view(), name='login'),
 ]
