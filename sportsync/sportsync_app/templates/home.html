@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <title>Home</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
-   {% load static %}
-  <!-- Link para o arquivo CSS externo -->
-  <link rel="stylesheet" href="{% static 'home.css' %}">
- </head>
- <body>
-  <div class="container">
-   <div class="header">
-    <div class="logo">
-     <i class="fas fa-home"></i>
+<head>
+    <title>Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">  <!-- CSS -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="{% static 'img/logo-home.png' %}" alt="Logo Home" />  <!-- Logo -->
+            </div>
+            <nav>
+                <a href="#">Início</a>
+                <a href="#">Sobre nós</a>
+                <button class="login-btn">Entrar</button>
+            </nav>
+        </div>
+        <div class="about-section">
+            <div class="text">
+                <h2>About Us</h2>
+                <p>
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look ev
+                </p>
+                <button class="cta-btn">Comece já</button>
+            </div>
+            <div class="image">
+                <div class="ellipse"></div> <!-- Elipse  -->
+                <img alt="Athlete in starting position" height="300" src="{% static 'img/atleta-home.png' %}" width="300"/>  <!-- Imagem do atleta -->
+            </div>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <h3>Gestão.</h3>
+                <p>Organização de eventos esportivos.</p>
+            </div>
+            <div class="feature">
+                <h3>Agilidade.</h3>
+                <p>Desenvolvimento rápido e eficiente.</p>
+            </div>
+            <div class="feature">
+                <h3>Integração.</h3>
+                <p>Conexão entre atletas e eventos.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Siga-nos nas redes sociais</p>
+        </div>
     </div>
-    <nav>
-     <a href="#">Início</a>
-     <a href="#">Sobre nós</a>
-     <button class="login-btn">Entrar</button>
-    </nav>
-   </div>
-   <div class="about-section">
-    <div class="text">
-     <h2>About Us</h2>
-     <p>
-      There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look ev
-     </p>
-     <button class="cta-btn">Comece já</button>
-    </div>
-    <div class="image">
-     <img alt="Athlete in starting position" height="300" src="https://storage.googleapis.com/a1aa/image/0Dz4Du08B969F1jiYrUh1hWnsFLU0BaGSPO8VvbEKEwSKt4E.jpg" width="300"/>
-    </div>
-   </div>
-   <div class="features">
-    <div class="feature">
-     <h3>Gestão.</h3>
-     <p>Organização de eventos esportivos.</p>
-    </div>
-    <div class="feature">
-     <h3>Agilidade.</h3>
-     <p>Desenvolvimento rápido e eficiente.</p>
-    </div>
-    <div class="feature">
-     <h3>Integração.</h3>
-     <p>Conexão entre atletas e eventos.</p>
-    </div>
-   </div>
-   <div class="footer">
-    <p>Siga-nos nas redes sociais</p>
-   </div>
-  </div>
- </body>
+</body>
 </html>

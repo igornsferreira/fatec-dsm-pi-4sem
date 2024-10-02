@@ -127,7 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'sportsync_app', 'static'),
+    BASE_DIR / "sportsync_app" / "static",  # Ajuste aqui para apontar para o diretório estático da app
 ]
 
 # Default primary key field type

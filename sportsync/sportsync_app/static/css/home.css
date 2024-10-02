@@ -1,12 +1,12 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background-color:rgba(45, 52, 70, 1);
+    background-color: rgba(34, 38, 47, 1);
     color: #ffffff;
 }
 
 .container {
-    background-color: #2c2c2c;
+    background-color: rgba(34, 38, 47, 1);
     padding: 20px;
 }
 
@@ -30,6 +30,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold; 
 }
 
 .about-section {
@@ -51,6 +52,7 @@ body {
 .about-section p {
     font-size: 16px;
     margin-bottom: 20px;
+    font-weight: normal; 
 }
 
 .about-section .cta-btn {
@@ -60,6 +62,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold; 
 }
 
 .about-section .image {
@@ -68,9 +71,23 @@ body {
 
 .about-section .image img {
     border-radius: 50%;
-    width: 300px;
-    height: 300px;
+    width: 320px; 
+    height: 250px; 
     object-fit: cover;
+    position: relative; 
+    z-index: 1; /* Coloca a imagem acima da elipse */
+}
+
+.about-section .ellipse {
+    width: 245px; 
+    height: 247px; 
+    position: absolute; 
+    top: 50%; 
+    left: 23px; 
+    transform: translateY(-50%); 
+    border-radius: 50%; 
+    background: rgba(217, 152, 22, 1); 
+    z-index: 0; /* Coloca a elipse abaixo da imagem do atleta */
 }
 
 .features {
@@ -80,7 +97,7 @@ body {
 }
 
 .feature {
-    background-color: #3c3c3c;
+    background-color: rgba(45, 52, 70, 1);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -97,7 +114,13 @@ body {
 }
 
 .footer {
-    background-color: #3c3c3c;
+    background-color: rgba(45, 52, 70, 1);
     padding: 20px;
     text-align: center;
+}
+
+.logo img {
+    width: 59.07px; 
+    height: 57px; 
+    opacity: 1; 
 }
