@@ -25,7 +25,7 @@ body {
 
 .header .login-btn {
     background-color: #f0a500;
-    color: #ffffff;
+    color: rgba(65, 61, 61, 1); 
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -51,7 +51,7 @@ body {
     margin-bottom: 20px;
 }
 
-.about-section p {
+.about-section p texto-sobre-nos{
     font-size: 16px;
     margin-bottom: 20px;
     font-weight: normal; 
@@ -59,12 +59,12 @@ body {
 
 .about-section .cta-btn {
     background-color: #f0a500;
-    color: #ffffff;
+    color: rgba(65, 61, 61, 1); 
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: normal; 
+    font-weight: bold; 
 }
 
 .about-section .image {
@@ -73,8 +73,8 @@ body {
 
 .about-section .image img {
     border-radius: 50%;
-    width: 320px; 
-    height: 250px; 
+    width: 400px; 
+    height: 300px; 
     object-fit: cover;
     position: relative; 
     z-index: 1; /* Coloca a imagem acima da elipse */
