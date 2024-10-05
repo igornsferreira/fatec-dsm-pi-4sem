@@ -9,12 +9,18 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+.border {
+    border: 2px solid #3A3A42;
+    padding: 10px;
+}
+
 .container {
     background-color: #2C2C34;
     padding: 40px;
     border-radius: 8px;
     text-align: center;
     width: 300px;
+    max-width: 90%;
 }
 
 .container img {
@@ -44,6 +50,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s; 
 }
 
 .container button:hover {
@@ -60,9 +67,4 @@ body {
 
 .container a:hover {
     text-decoration: underline;
-}
-
-.border {
-    border: 2px solid #3A3A42;
-    padding: 10px;
 }

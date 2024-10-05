@@ -7,16 +7,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="icon" href="{% static 'img/logo-home.png' %}"> 
 </head>
 <body>
     <div class="border">
         <div class="container">
-            <img src="{% static 'img/logo-home.png' %}" alt="Logo Login" />  <!-- Logo -->
+            <img src="{% static 'img/logo-home.png' %}" alt="Logo Login" />  
             <h2>Faça o login ou registre-se em segundos</h2>
             <p>Use seu e-mail ou outra plataforma de identificação para entrar no SportSync</p>
-            <button onclick="location.href='#'">Continuar com o Google</button> <!-- Placeholder -->
-            <button onclick="location.href='#'">Continuar com o Facebook</button> <!-- Placeholder -->
-            <button onclick="location.href='{% url 'login-email' %}'">Continuar com o Email</button> <!-- Redireciona para login-email -->
+            <button onclick="location.href='#'">Continuar com o Google</button> 
+            <button onclick="location.href='#'">Continuar com o Facebook</button> 
+            <button onclick="location.href='{% url 'login-email' %}'">Continuar com o Email</button> 
             <a href="#">Cadastre-se manualmente</a>
         </div>
     </div>

@@ -19,3 +19,9 @@ class LoginEmailView(View):
     
     def get(self, request):
         return render(request, self.template_name)
+    
+class CadastroView(View):
+    template_name = 'cadastro.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)

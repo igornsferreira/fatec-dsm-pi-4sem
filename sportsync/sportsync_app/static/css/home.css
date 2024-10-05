@@ -43,7 +43,6 @@ body {
 
 .about-section .text {
     max-width: 50%;
-    font-weight: normal;
 }
 
 .about-section h2 {
@@ -51,10 +50,9 @@ body {
     margin-bottom: 20px;
 }
 
-.about-section p texto-sobre-nos{
+#texto-sobre-nos {
     font-size: 16px;
     margin-bottom: 20px;
-    font-weight: normal; 
 }
 
 .about-section .cta-btn {
@@ -77,7 +75,7 @@ body {
     height: 300px; 
     object-fit: cover;
     position: relative; 
-    z-index: 1; /* Coloca a imagem acima da elipse */
+    z-index: 1;
 }
 
 .about-section .ellipse {
@@ -89,7 +87,7 @@ body {
     transform: translateY(-50%); 
     border-radius: 50%; 
     background: rgba(217, 152, 22, 1); 
-    z-index: 0; /* Coloca a elipse abaixo da imagem do atleta */
+    z-index: 0; 
 }
 
 .features {
@@ -125,4 +123,54 @@ body {
     width: 59.07px; 
     height: 57px; 
     opacity: 1; 
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .about-section .text {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .about-section .image {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header nav {
+        margin-top: 10px;
+    }
+
+    .about-section h2 {
+        font-size: 28px;
+    }
+
+    .about-section .cta-btn, 
+    .header .login-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
 }
