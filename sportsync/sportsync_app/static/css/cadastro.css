@@ -17,18 +17,19 @@ body {
 
 #right {
     background-color: rgba(34, 38, 47, 1); 
-    color: #ffffff;
+    color: #f0a500;
 }
 
 .logo {
     max-width: 500px; 
     height: auto; 
-
+}
 
 .form-title {
     font-size: 28px;
     margin-bottom: 20px;
     color: #f0a500; 
+}
 
 .btn-warning {
     background-color: #f0a500; 
