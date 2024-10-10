@@ -17,20 +17,11 @@ class Endereco(models.Model):
         return f"{self.rua}, {self.numero}, {self.cidade}, {self.estado}"
 
 class Usuario(models.Model):
-    ROLE_CHOICES = [
-        ('atleta', 'Atleta'),
-        ('organizador', 'Organizador'),
-    ]
-    
     id_usuario = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     nome = models.CharField(max_length=255)
     senha = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    cpf = models.CharField(max_length=11, unique=True)
     telefone = models.CharField(max_length=20)
-    data_nascimento = models.DateField()
-    endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True)
-    papel = models.CharField(max_length=12, choices=ROLE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
