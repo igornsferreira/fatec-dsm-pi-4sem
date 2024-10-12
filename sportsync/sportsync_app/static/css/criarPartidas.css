@@ -1,31 +1,70 @@
 body {
-    background-color:  rgba(34, 38, 47, 1);
+    background-color: rgba(34, 38, 47, 1);
     color: #FFFFFF;
     font-family: Arial, sans-serif;
 }
 
-.sidebar {
-    background-color: rgba(45, 52, 70, 1);
-    padding: 20px;
+.navigation {
+    position: fixed;
     height: 100vh;
+    background: #2D313A;
+    width: 300px;
+    box-shadow: 10px 0 0 #2D313A;
+    border-left: 10px solid #2D313A;
+    overflow-x: hidden;
+    transition: 0.2s;
 }
 
-.sidebar a {
-    color: #FFFFFF;
-    padding: 10px 0;
+.navigation ul li {
+    margin-top: 20px;
+    position: relative;
+    list-style: none;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    width: 100%;
     text-decoration: none;
+    color: #ffffff;
 }
 
-.sidebar a.active {
-    background-color: rgba(217, 152, 22, 1); 
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 70px;
 }
 
-.sidebar a:hover {
-    background-color: rgba(217, 152, 22, 1); 
+.navigation ul li a .icon ion-icon {
+    position: relative;
+    font-size: 1.5rem;
+    z-index: 1;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+}
+
+.navigation ul li.active {
+    background: #9F7A2F;
 }
 
 .content {
     padding: 20px;
+    margin-left: 300px; /* Afasta o conteúdo da barra de navegação */
+    max-width: 1280px; /* Limita a largura do conteúdo */
+    margin: 20px auto; /* Centraliza o conteúdo horizontalmente */
 }
 
 .content h2 {
@@ -53,4 +92,43 @@ body {
     background-color: #b88a24;
 }
 
+/* Media Queries para tornar a página responsiva */
+@media (max-width: 768px) {
+    .navigation {
+        width: 200px; /* Reduz a largura da navegação em telas menores */
+    }
 
+    .content {
+        margin-left: 200px; /* Ajusta a margem do conteúdo conforme a navegação */
+        padding: 15px; /* Ajusta o padding em telas menores */
+    }
+
+    .navigation ul li a .title {
+        font-size: 0.9rem; /* Reduz o tamanho da fonte dos links da navegação */
+    }
+}
+
+@media (max-width: 576px) {
+    .navigation {
+        width: 100%; /* Barra de navegação ocupa a largura total da tela */
+        height: auto; /* Ajusta a altura para conteúdo adaptável */
+        position: relative; /* A navegação agora será relativa, não fixa */
+    }
+
+    .content {
+        margin-left: 0; /* Remove a margem, pois a navegação agora ocupa a tela toda */
+        padding: 10px; /* Reduz ainda mais o padding */
+    }
+
+    .card {
+        padding: 15px; /* Reduz o padding dos cards */
+    }
+
+    .card .btn {
+        padding: 8px 16px; /* Ajusta o botão para caber em telas menores */
+    }
+
+    .navigation ul li {
+        margin-top: 20px; /* Diminui o espaçamento entre os itens da navegação */
+    }
+}

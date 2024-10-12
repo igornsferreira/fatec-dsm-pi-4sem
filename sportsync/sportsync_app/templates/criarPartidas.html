@@ -15,19 +15,55 @@
 <body>
     <div class="d-flex">
         <!-- Sidebar -->
-        <div class="sidebar">
+        <nav class="navigation">
             <a href=""><img src="{% static 'img/logo-comprido.png' %}" alt="Logo" width="120" class="mb-4"></a>
-            <hr>
-            <a class="active nav-link" href=""><i class="fas fa-home"></i> Home</a>
-            <a class="nav-link" href=""><i class="fas fa-plus-circle"></i> Crie uma partida</a>
-            <a class="nav-link" href=""><i class="fas fa-list"></i> Listar quadras e eventos</a>
-            <a class="nav-link" href=""><i class="fas fa-list"></i> Gerenciar quadras</a>
-            <a class="nav-link" href=""><i class="fas fa-search"></i> Encontre uma partida</a>
-            <a class="nav-link" href=""><i class="fas fa-calendar-alt"></i> Minhas reservas</a>
-            <a class="nav-link" href=""><i class="fas fa-user"></i> Meu perfil</a>
-            <hr>
-            <a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i> Sair</a>
-        </div>
+            <ul>
+                <li class="list active">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="football-outline"></ion-icon></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="list-outline"></ion-icon></span>
+                        <span class="title">Crie uma partida</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="football-outline"></ion-icon></span>
+                        <span class="title">Listar quadras e eventos</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="apps-outline"></ion-icon></span>
+                        <span class="title">Gerenciar quadras</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">Encontre uma partida</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">Minhas Reservas</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">Meu perfil</span>
+                    </a>
+                </li>
+                <hr>
+                <a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </ul>
+        </nav>
 
         <!-- Content -->
         <div class="content flex-grow-1">
@@ -69,6 +105,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink() {
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) => item.addEventListener('click', activeLink));
+    </script>
+
 </body>
 
 </html>
