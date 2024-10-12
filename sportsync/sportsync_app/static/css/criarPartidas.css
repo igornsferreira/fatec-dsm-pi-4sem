@@ -63,12 +63,17 @@ body {
 .content {
     padding: 20px;
     margin-left: 300px; /* Afasta o conteúdo da barra de navegação */
-    max-width: 1280px; /* Limita a largura do conteúdo */
-    margin: 20px auto; /* Centraliza o conteúdo horizontalmente */
+    max-width: 800px; /* Limita a largura do conteúdo */
+    margin: 30px auto; /* Centraliza o conteúdo horizontalmente */
+    flex-grow: 1;
 }
 
 .content h2 {
-    color: #d4a017;
+    color: #9F7A2F;
+}
+
+p {
+    color: #FFFFFF; /* Define a cor do texto como branco */
 }
 
 .card {
@@ -89,7 +94,24 @@ body {
 }
 
 .card .btn:hover {
-    background-color: #b88a24;
+    background-color: #9F7A2F;
+}
+
+.footer {
+    background-color: #2D313A;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    bottom: 0;          /* Alinha o footer ao fundo da página */
+    left: 0;            /* Alinha à esquerda */
+    width: 100%;        /* Ocupa toda a largura da página */
+}
+
+.footer a {
+    color: #fff;
+    margin: 0 10px;
+    
 }
 
 /* Media Queries para tornar a página responsiva */
