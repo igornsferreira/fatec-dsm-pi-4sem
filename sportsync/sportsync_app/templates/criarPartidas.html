@@ -19,13 +19,13 @@
             <a href=""><img src="{% static 'img/logo-comprido.png' %}" alt="Logo" width="120" class="mb-4"></a>
             <ul>
                 <li class="list active">
-                    <a href="#">
+                    <a href="{% url 'home' %}">
                         <span class="icon"><ion-icon name="football-outline"></ion-icon></span>
                         <span class="title">Home</span>
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#">
+                    <a href="{% url 'criarPartidas' %}">
                         <span class="icon"><ion-icon name="list-outline"></ion-icon></span>
                         <span class="title">Crie uma partida</span>
                     </a>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <hr>
-                <a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i> Sair</a>
+                <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
             </ul>
         </nav>
 
