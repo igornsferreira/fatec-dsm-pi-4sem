@@ -23,3 +23,34 @@ body {
 .sidebar a:hover {
     background-color: rgba(217, 152, 22, 1); 
 }
+
+.content {
+    padding: 20px;
+}
+
+.content h2 {
+    color: #d4a017;
+}
+
+.card {
+    background-color: #2e2e3a;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card .btn {
+    background-color: #d4a017;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.card .btn:hover {
+    background-color: #b88a24;
+}
+
+
