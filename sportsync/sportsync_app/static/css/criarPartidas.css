@@ -84,7 +84,7 @@ p {
     margin-bottom: 20px;
 }
 
-.card .btn {
+.card .btn btn-primary {
     background-color: #d4a017;
     color: #fff;
     border: none;

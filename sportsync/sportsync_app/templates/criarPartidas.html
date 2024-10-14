@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/criarPartidas.css' %}">
+
     <title>Sidebar e Conteúdo</title>
 </head>
 
@@ -79,13 +80,11 @@
                         <p>Itapecerica da Serra - SP</p>
                     </div>
                     <div>
-                        <button class="btn">Reservar</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#reservaModal">Reservar</button>
+
                     </div>
                 </div>
-                <dialog open>
-                    <h2>Teste</h2>
-                    <p>blá blá blá</p>
-                </dialog>
             </div>
 
             <!-- Repetição dos cards para mais quadras -->
@@ -100,27 +99,12 @@
                     </div>
                     <div>
                         <button class="btn">Reservar</button>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-    <script>
-        const list = document.querySelectorAll('.list');
-        function activeLink() {
-            list.forEach((item) => item.classList.remove('active'));
-            this.classList.add('active');
-        }
-        list.forEach((item) => item.addEventListener('click', activeLink));
-    </script>
     <div class="footer">
         <img src="{% static 'img/logo-comprido.png' %}" alt="Logo" width="120" class="mb-4"></a>
         <p>Nos acompanhe nas redes sociais</p>
@@ -131,6 +115,32 @@
             <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="reservaModal" tabindex="-1" aria-labelledby="reservaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reservaModalLabel">Confirmar Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja confirmar a reserva desta quadra?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Confirmar Reserva</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/modal.js' %}"></script>
 
 </html>
