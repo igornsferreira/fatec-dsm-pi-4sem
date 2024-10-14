@@ -1,5 +1,7 @@
 import uuid
 from django.db import models
+from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class Endereco(models.Model):
     id_endereco = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -27,6 +29,11 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def check_password(self, raw_password):
+        # Verifica se a senha passada corresponde ao hash armazenado    
+        return check_password(raw_password, self.senha)
+    
 
 class Esporte(models.Model):
     id_esporte = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
