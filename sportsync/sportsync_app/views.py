@@ -83,7 +83,23 @@ class criarPartidasView(View):
     template_name = 'criarPartidas.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        quadras = [
+            {
+                'nome': '10 shirt Society',
+                'endereco': 'Itapecerica da Serra - SP',
+                'bairro': 'Parque Paraíso',
+                'telefone': '(19) 98846-6237'
+            },
+            {
+                'nome': 'Quadra XYZ',
+                'endereco': 'São Paulo - SP',
+                'bairro': 'Centro',
+                'telefone': '(11) 91234-5678'
+            },
+           
+        ]
+
+        return render(request, self.template_name, {'quadras': quadras})
 
 
 class agendamentoView(View):
