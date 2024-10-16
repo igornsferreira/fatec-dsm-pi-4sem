@@ -1,0 +1,102 @@
+body {
+    background-color: rgba(34, 38, 47, 1);
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh; 
+}
+
+.left, .right {
+    width: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left {
+    background: #2D313A;
+    flex-direction: column;
+    padding: 20px;
+    color: #000; 
+}
+
+.right {
+    background-image: url("{% static 'img/atleta-home.png' %}");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+    height: 100%; 
+    color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.right p {
+    font-size: 24px;
+    margin: 0;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #000; 
+}
+
+.form-group {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%; 
+    max-width: 300px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.5); /* Define o texto com transparência */
+}
+
+.form-group input::placeholder, /* Para o placeholder, se houver */
+.form-group select::placeholder {
+    color: rgba(0, 0, 0, 0.5); /* Transparência no placeholder também */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #00a1e0;
+}
+
+.login-button {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    background-color: #d4a017;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #bbb;
+}

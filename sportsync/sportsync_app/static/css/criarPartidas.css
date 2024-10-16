@@ -62,9 +62,9 @@ body {
 
 .content {
     padding: 20px;
-    margin-left: 300px; /* Afasta o conteúdo da barra de navegação */
-    max-width: 800px; /* Limita a largura do conteúdo */
-    margin: 30px auto; /* Centraliza o conteúdo horizontalmente */
+    margin-left: 300px;
+    max-width: 800px; 
+    margin: 30px auto; 
     flex-grow: 1;
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 p {
-    color: #FFFFFF; /* Define a cor do texto como branco */
+    color: #FFFFFF; 
 }
 
 .card {
@@ -103,9 +103,9 @@ p {
     text-align: center;
     color: #fff;
     position: fixed;
-    bottom: 0;          /* Alinha o footer ao fundo da página */
-    left: 0;            /* Alinha à esquerda */
-    width: 100%;        /* Ocupa toda a largura da página */
+    bottom: 0;          
+    left: 0;            
+    width: 100%;        
 }
 
 .footer a {
@@ -117,40 +117,40 @@ p {
 /* Media Queries para tornar a página responsiva */
 @media (max-width: 768px) {
     .navigation {
-        width: 200px; /* Reduz a largura da navegação em telas menores */
+        width: 200px; 
     }
 
     .content {
-        margin-left: 200px; /* Ajusta a margem do conteúdo conforme a navegação */
-        padding: 15px; /* Ajusta o padding em telas menores */
+        margin-left: 200px; 
+        padding: 15px; 
     }
 
     .navigation ul li a .title {
-        font-size: 0.9rem; /* Reduz o tamanho da fonte dos links da navegação */
+        font-size: 0.9rem; 
     }
 }
 
 @media (max-width: 576px) {
     .navigation {
-        width: 100%; /* Barra de navegação ocupa a largura total da tela */
-        height: auto; /* Ajusta a altura para conteúdo adaptável */
-        position: relative; /* A navegação agora será relativa, não fixa */
+        width: 100%; 
+        height: auto; 
+        position: relative; 
     }
 
     .content {
-        margin-left: 0; /* Remove a margem, pois a navegação agora ocupa a tela toda */
-        padding: 10px; /* Reduz ainda mais o padding */
+        margin-left: 0; 
+        padding: 10px; 
     }
 
     .card {
-        padding: 15px; /* Reduz o padding dos cards */
+        padding: 15px; 
     }
 
     .card .btn {
-        padding: 8px 16px; /* Ajusta o botão para caber em telas menores */
+        padding: 8px 16px; 
     }
 
     .navigation ul li {
-        margin-top: 20px; /* Diminui o espaçamento entre os itens da navegação */
+        margin-top: 20px; 
     }
 }

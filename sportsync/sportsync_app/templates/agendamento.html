@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/agendamento.css' %}">
+
+    <title>Agendamento</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="title">
+                Preencha os campos abaixo:
+            </div>
+            <div class="form-group">
+                <label>Local</label>
+                <input type="text" value="local escolhido" readonly>
+            </div>
+            <div class="form-group">
+                <label for="hora">Selecione a modalidade desejada</label>
+                <select id="hora" class="form-control">
+                    <option value="" disabled selected>Escolha</option>
+                    <option value="Futebol">Futebol</option>
+                    <option value="Tênis">Tênis</option>
+                    <option value="Vôlei">Vôlei</option>
+                    <option value="Handebol">Handebol</option>
+                    <option value="Basquete">Basquete</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="data">Selecione a data desejada</label>
+                <input type="date" id="data" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="hora">Selecione o horário de início da partida</label>
+                <select id="hora" class="form-control">
+                    <option value="" disabled selected>Escolha uma hora</option>
+                    <option value="08:00">08:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="22:00">22:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hora">Selecione o horário de término da partida</label>
+                <select id="hora" class="form-control">
+                    <option value="" disabled selected>Escolha uma hora</option>
+                    <option value="08:00">08:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="22:00">22:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade máxima de jogadores</label>
+                <input type="text" id="quantidade" class="form-control">
+            </div>
+            <button class="login-button">
+                Confirmar
+            </button>
+        </div>
+        <div class="right">
+            <p>
+                Nunca foi tão fácil agendar uma partida com a galera!
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

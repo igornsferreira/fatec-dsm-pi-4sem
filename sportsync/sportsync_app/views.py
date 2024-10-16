@@ -7,17 +7,20 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from .forms import LoginEmailForm, CadastroForm
 
+
 class HomeView(View):
     template_name = 'home.html'
 
     def get(self, request):
         return render(request, self.template_name)
 
+
 class LoginView(View):
     template_name = 'login.html'
 
     def get(self, request):
         return render(request, self.template_name)
+
 
 class LoginEmailView(View):
     template_name = 'login-email.html'
@@ -39,18 +42,21 @@ class LoginEmailView(View):
                 user = authenticate(request, username=email, password=password)
                 if user is not None:
                     login(request, user)
-                    return redirect('dashboard')  # Redirecionar para o dashboard ou home
+                    # Redirecionar para o dashboard ou home
+                    return redirect('dashboard')
                 else:
                     form.add_error(None, "Login inválido.")
         elif 'cadastro' in request.POST:  # Verificar se é um cadastro
             cadastro_form = CadastroForm(request.POST)
             if cadastro_form.is_valid():
                 cadastro_form.save()  # Salva o novo usuário
-                return redirect('login')  # Redirecionar para o login após cadastro
+                # Redirecionar para o login após cadastro
+                return redirect('login')
 
         # Renderiza o template com os forms, mantendo os dados e erros
         return render(request, self.template_name, {'form': form, 'cadastro_form': cadastro_form})
-    
+
+
 class CadastroView(View):
     template_name = 'cadastro.html'
 
@@ -62,7 +68,7 @@ class CadastroView(View):
         form = CadastroForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  
+            return redirect('login')
         return render(request, self.template_name, {'form': form})
 
 
@@ -75,6 +81,13 @@ class DashboardView(View):
 
 class criarPartidasView(View):
     template_name = 'criarPartidas.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class agendamentoView(View):
+    template_name = 'agendamento.html'
 
     def get(self, request):
         return render(request, self.template_name)
