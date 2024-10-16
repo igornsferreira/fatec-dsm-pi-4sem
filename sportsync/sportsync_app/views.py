@@ -96,7 +96,7 @@ class criarPartidasView(View):
                 'bairro': 'Centro',
                 'telefone': '(11) 91234-5678'
             },
-           
+
         ]
 
         return render(request, self.template_name, {'quadras': quadras})
@@ -104,6 +104,13 @@ class criarPartidasView(View):
 
 class agendamentoView(View):
     template_name = 'agendamento.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class visualizarPartidasView(View):
+    template_name = 'visualizarPartidas.html'
 
     def get(self, request):
         return render(request, self.template_name)
