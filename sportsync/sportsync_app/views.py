@@ -10,7 +10,7 @@ from .forms import LoginEmailForm, CadastroForm
 
 class HomeView(View):
     template_name = 'home.html'
-
+    
     def get(self, request):
         return render(request, self.template_name)
 
@@ -56,7 +56,6 @@ class LoginEmailView(View):
         # Renderiza o template com os forms, mantendo os dados e erros
         return render(request, self.template_name, {'form': form, 'cadastro_form': cadastro_form})
 
-
 class CadastroView(View):
     template_name = 'cadastro.html'
 
@@ -71,13 +70,11 @@ class CadastroView(View):
             return redirect('login')
         return render(request, self.template_name, {'form': form})
 
-
 class DashboardView(View):
     template_name = 'dashboard.html'
 
     def get(self, request):
         return render(request, self.template_name)
-
 
 class criarPartidasView(View):
     template_name = 'criarPartidas.html'
@@ -96,7 +93,7 @@ class criarPartidasView(View):
                 'bairro': 'Centro',
                 'telefone': '(11) 91234-5678'
             },
-
+           
         ]
 
         return render(request, self.template_name, {'quadras': quadras})
@@ -104,13 +101,6 @@ class criarPartidasView(View):
 
 class agendamentoView(View):
     template_name = 'agendamento.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-
-class visualizarPartidasView(View):
-    template_name = 'visualizarPartidas.html'
 
     def get(self, request):
         return render(request, self.template_name)

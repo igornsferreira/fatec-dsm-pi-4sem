@@ -1,7 +1,8 @@
 import uuid
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group, Permission, BaseUserManager
+
 
 class Endereco(models.Model):
     id_endereco = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -18,21 +19,64 @@ class Endereco(models.Model):
     def __str__(self):
         return f"{self.rua}, {self.numero}, {self.cidade}, {self.estado}"
 
-class Usuario(models.Model):
+class UserManager(BaseUserManager):
+    def create_user(self, email, nome, telefone, password=None):
+        if not email:
+            raise ValueError('O usuário precisa de um endereço de e-mail')
+        
+        user = self.model(
+            email=self.normalize_email(email),
+            nome=nome,
+            telefone=telefone,
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, nome, telefone, password):
+        user = self.create_user(
+            email=email,
+            nome=nome,
+            telefone=telefone,
+            password=password,
+        )
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
+class Usuario(AbstractBaseUser, PermissionsMixin):
     id_usuario = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     nome = models.CharField(max_length=255)
-    senha = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     telefone = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+
+    groups = models.ManyToManyField(Group, blank=True, related_name='usuario_groups')
+    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='usuario_user_permissions')  # Adicionei 'related_name'
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['nome']
+
+    objects = UserManager()
 
     def __str__(self):
         return self.nome
 
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+        self.save(update_fields=['password'])
+
     def check_password(self, raw_password):
-        # Verifica se a senha passada corresponde ao hash armazenado    
-        return check_password(raw_password, self.senha)
+        return check_password(raw_password, self.password)
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
     
 
 class Esporte(models.Model):
