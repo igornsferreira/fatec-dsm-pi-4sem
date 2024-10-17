@@ -5,9 +5,6 @@ body {
 
 #cadastro {
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #left {
@@ -20,32 +17,37 @@ body {
 #right {
     background-color: rgba(34, 38, 47, 1);
     color: #f0a500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .logo {
-    max-width: 400px;
+    max-width: 500px;
     height: auto;
 }
 
 .form-title {
-    font-size: 30px;
-    margin-bottom: 30px;
+    font-size: 28px;
+    margin-bottom: 20px;
     color: #f0a500;
 }
 
 .form-control {
-    background-color: #2b2f37;
-    color: #f0a500;
+    background-color: #ffffff;
+    color: black;
     border: 1px solid #f0a500;
     padding: 15px;
     margin-top: 10px;
 }
 
 .form-control:focus {
-    background-color: #2b2f37;
+    background-color: white;
     border-color: #f0a500;
     box-shadow: none;
-    color: #f0a500;
+    color: black;
 }
 
 .btn-warning {
