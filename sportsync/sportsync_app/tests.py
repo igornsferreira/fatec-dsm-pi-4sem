@@ -57,8 +57,8 @@ class UserViewsTest(TestCase):
             'cadastro_form-0-senha': 'NewPassword123!',
             'cadastro_form-0-confirmacao_senha': 'NewPassword123!',
         })
-        self.assertEqual(response.status_code, 302)  # Redireciona para o login
-        self.assertRedirects(response, reverse('login'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('dashboard'))
         self.assertTrue(Usuario.objects.filter(email='newuser@example.com').exists())
 
     def test_cadastro_view_get(self):
@@ -74,8 +74,8 @@ class UserViewsTest(TestCase):
             'senha': 'NewPassword123!',
             'confirmacao_senha': 'NewPassword123!',
         })
-        self.assertEqual(response.status_code, 302)  # Redireciona para o login
-        self.assertRedirects(response, reverse('login'))
+        self.assertEqual(response.status_code, 302) 
+        self.assertRedirects(response, reverse('dashboard'))
         self.assertTrue(Usuario.objects.filter(email='newuser@example.com').exists())
 
     def test_dashboard_view(self):

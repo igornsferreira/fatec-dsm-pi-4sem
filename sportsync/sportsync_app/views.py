@@ -37,7 +37,7 @@ class LoginEmailView(LoginView):
                 auth_login(request, user)
                 return redirect('dashboard')  
 
-            form.add_error(None, 'Email ou senha inválidos.')  
+            form.add_error(None, 'Credenciais inválidas. Tente novamente.')  
 
         return render(request, self.template_name, {'form': form})
 
