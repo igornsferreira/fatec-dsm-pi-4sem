@@ -20,30 +20,26 @@ class LoginView(View):
 
 class LoginEmailView(LoginView):
     template_name = 'login-email.html'
-    
+
     def get(self, request):
         form = LoginEmailForm()
-        cadastro_form = CadastroForm()
-        return render(request, self.template_name, {'form': form, 'cadastro_form': cadastro_form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = LoginEmailForm(request.POST)
-        cadastro_form = CadastroForm(request.POST)
-        
+
         if form.is_valid():
             email = form.cleaned_data.get('email')
             senha = form.cleaned_data.get('senha')
             user = authenticate(request, email=email, password=senha)
+
             if user is not None:
                 auth_login(request, user)
-                return redirect('dashboard')
-        
-        if cadastro_form.is_valid():
-            usuario = cadastro_form.save()
-            auth_login(request, usuario)  
-            return redirect('dashboard')  
-        
-        return render(request, self.template_name, {'form': form, 'cadastro_form': cadastro_form})
+                return redirect('dashboard')  
+
+            form.add_error(None, 'Email ou senha inválidos.')  
+
+        return render(request, self.template_name, {'form': form})
 
 class CadastroView(View):
     template_name = 'cadastro.html'

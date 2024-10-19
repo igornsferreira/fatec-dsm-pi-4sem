@@ -33,9 +33,11 @@
                     {{ form.non_field_errors }}  <!-- Exibe erros globais, se houver -->
                     <div class="mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Digite seu email" required>
+                        {{ form.email.errors }}  <!-- Exibe erros específicos do campo de e-mail -->
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Digite sua senha" required>
+                        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha" required>
+                        {{ form.senha.errors }}  <!-- Exibe erros específicos do campo de senha -->
                     </div>
                     <div class="mt-4">
                         <button type="submit" class="btn btn-warning">Entrar</button>
@@ -43,7 +45,7 @@
                     <div class="mt-3 text-center">
                         <a href="#">Esqueci minha senha</a>
                     </div>
-                </form>
+                </form>                
             </div>
         </div>
     </div>
