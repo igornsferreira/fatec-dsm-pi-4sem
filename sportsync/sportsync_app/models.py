@@ -3,22 +3,6 @@ from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group, Permission, BaseUserManager
 
-
-class Endereco(models.Model):
-    id_endereco = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    cep = models.CharField(max_length=10)
-    rua = models.CharField(max_length=255)
-    bairro = models.CharField(max_length=255)
-    numero = models.CharField(max_length=10)
-    cidade = models.CharField(max_length=255)
-    estado = models.CharField(max_length=255)
-    pais = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.rua}, {self.numero}, {self.cidade}, {self.estado}"
-
 class UserManager(BaseUserManager):
     def create_user(self, email, nome, telefone, password=None):
         if not email:
@@ -77,6 +61,21 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
+
+class Endereco(models.Model):
+    id_endereco = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    cep = models.CharField(max_length=10)
+    rua = models.CharField(max_length=255)
+    bairro = models.CharField(max_length=255)
+    numero = models.CharField(max_length=10)
+    cidade = models.CharField(max_length=255)
+    estado = models.CharField(max_length=255)
+    pais = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.rua}, {self.numero}, {self.cidade}, {self.estado}"
     
 
 class Esporte(models.Model):
