@@ -30,8 +30,9 @@
                 <p>Digite o usuário e senha para entrar na conta</p>
                 <form method="POST" class="w-100">
                     {% csrf_token %}
+                    {{ form.non_field_errors }}  <!-- Exibe erros globais, se houver -->
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="username" placeholder="Digite seu usuário" required>
+                        <input type="email" class="form-control" name="email" placeholder="Digite seu email" required>
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" name="password" placeholder="Digite sua senha" required>

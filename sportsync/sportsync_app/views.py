@@ -4,16 +4,13 @@ from .models import Usuario
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.models import User
-from .forms import LoginEmailForm, CadastroForm
-
+from .forms import CadastroForm, LoginEmailForm
 
 class HomeView(View):
     template_name = 'home.html'
-    
+
     def get(self, request):
         return render(request, self.template_name)
-
 
 class LoginView(View):
     template_name = 'login.html'
@@ -21,39 +18,31 @@ class LoginView(View):
     def get(self, request):
         return render(request, self.template_name)
 
-
-class LoginEmailView(View):
+class LoginEmailView(LoginView):
     template_name = 'login-email.html'
-
+    
     def get(self, request):
-        form = LoginEmailForm()  # Para login
-        cadastro_form = CadastroForm()  # Para cadastro
+        form = LoginEmailForm()
+        cadastro_form = CadastroForm()
         return render(request, self.template_name, {'form': form, 'cadastro_form': cadastro_form})
 
     def post(self, request):
-        form = LoginEmailForm()  # Inicializa o form de login vazio
-        cadastro_form = CadastroForm()  # Inicializa o form de cadastro vazio
-
-        if 'login' in request.POST:  # Verificar se é um login
-            form = LoginEmailForm(request.POST)
-            if form.is_valid():
-                email = form.cleaned_data.get('email')
-                password = form.cleaned_data.get('password')
-                user = authenticate(request, username=email, password=password)
-                if user is not None:
-                    login(request, user)
-                    # Redirecionar para o dashboard ou home
-                    return redirect('dashboard')
-                else:
-                    form.add_error(None, "Login inválido.")
-        elif 'cadastro' in request.POST:  # Verificar se é um cadastro
-            cadastro_form = CadastroForm(request.POST)
-            if cadastro_form.is_valid():
-                cadastro_form.save()  # Salva o novo usuário
-                # Redirecionar para o login após cadastro
-                return redirect('login')
-
-        # Renderiza o template com os forms, mantendo os dados e erros
+        form = LoginEmailForm(request.POST)
+        cadastro_form = CadastroForm(request.POST)
+        
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            senha = form.cleaned_data.get('senha')
+            user = authenticate(request, email=email, password=senha)
+            if user is not None:
+                auth_login(request, user)
+                return redirect('dashboard')
+        
+        if cadastro_form.is_valid():
+            usuario = cadastro_form.save()
+            auth_login(request, usuario)  
+            return redirect('dashboard')  
+        
         return render(request, self.template_name, {'form': form, 'cadastro_form': cadastro_form})
 
 class CadastroView(View):
@@ -65,9 +54,13 @@ class CadastroView(View):
 
     def post(self, request):
         form = CadastroForm(request.POST)
+
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            usuario = form.save()  
+            backend = 'allauth.account.auth_backends.AuthenticationBackend'  
+            login(request, usuario, backend=backend)
+            return redirect('dashboard') 
+
         return render(request, self.template_name, {'form': form})
 
 class DashboardView(View):
@@ -76,7 +69,7 @@ class DashboardView(View):
     def get(self, request):
         return render(request, self.template_name)
 
-class criarPartidasView(View):
+class CriarPartidasView(View):
     template_name = 'criarPartidas.html'
 
     def get(self, request):
@@ -93,13 +86,10 @@ class criarPartidasView(View):
                 'bairro': 'Centro',
                 'telefone': '(11) 91234-5678'
             },
-           
         ]
-
         return render(request, self.template_name, {'quadras': quadras})
 
-
-class agendamentoView(View):
+class AgendamentoView(View):
     template_name = 'agendamento.html'
 
     def get(self, request):

@@ -31,38 +31,38 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
+                        {% if form.nome.errors %}
+                            <div class="text-danger">{{ form.nome.errors }}</div>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        {% if form.email.errors %}
+                            <div class="text-danger">{{ form.email.errors }}</div>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <input type="tel" class="form-control" name="telefone" placeholder="Telefone" required>
+                        {% if form.telefone.errors %}
+                            <div class="text-danger">{{ form.telefone.errors }}</div>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" name="senha" placeholder="Senha" required>
+                        {% if form.senha.errors %}
+                            <div class="text-danger">{{ form.senha.errors }}</div>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" name="confirmacao-senha" placeholder="Confirme sua senha" required>
+                        <input type="password" class="form-control" name="confirmacao_senha" placeholder="Confirme sua senha" required>
+                        {% if form.confirmacao_senha.errors %}
+                            <div class="text-danger">{{ form.confirmacao_senha.errors }}</div>
+                        {% endif %}
                     </div>
                     <div class="mt-4">
                         <button type="submit" class="btn btn-warning">Cadastrar</button>
                     </div>
-
-                    <div class="mt-3 text-center">
-                        Já tem uma conta? <a href="/login">Entre aqui</a>
-                    </div>
-
-                    <div class="divider text-center">ou</div>
-
-                    <div class="social-buttons text-center">
-                        <button class="btn btn-outline-secondary w-100 mb-2">
-                            <i class="fab fa-google"></i> Cadastre-se com Google
-                        </button>
-                        <button class="btn btn-outline-secondary w-100">
-                            <i class="fab fa-facebook-f"></i> Cadastre-se com Facebook
-                        </button>
-                    </div>
-                </form>
+                </form>                
             </div>
         </div>
     </div>

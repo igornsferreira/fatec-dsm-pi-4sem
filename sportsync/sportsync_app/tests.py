@@ -1,54 +1,97 @@
 from django.test import TestCase
 from django.urls import reverse
-from sportsync_app.models import Usuario
 from django.contrib.auth import get_user_model
+from .models import Usuario
 
 User = get_user_model()
 
-class UsuarioTests(TestCase):
-    def setUp(self):
-        # Criação de um usuário para testes de login
-        self.usuario = Usuario.objects.create(
-            email='teste@exemplo.com',
-            nome='Teste Usuário',
-            telefone='11987654321'
-        )
-        self.usuario.set_password('SenhaForte123')
-
-    def test_cadastro_sucesso(self):
-        """Testa o fluxo de cadastro com sucesso"""
-        url = reverse('cadastro')  # Verifica o nome da URL
-        data = {
-            'nome': 'Teste Usuário',
-            'email': 'usuario@exemplo.com',
-            'telefone': '11987654321',
-            'password': 'SenhaForte123',
-        }
-
-        response = self.client.post(url, data)
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(Usuario.objects.filter(email='usuario@exemplo.com').exists())
+class UserViewsTest(TestCase):
     
-    def test_login_sucesso(self):
-        """Testa o fluxo de login com sucesso"""
-        url = reverse('login')  # Verifica o nome da URL
-        data = {
-            'email': 'teste@exemplo.com',
-            'password': 'SenhaForte123'
-        }
+    def setUp(self):
+        # Cria um usuário de teste
+        self.user = User.objects.create_user(
+            email='test@example.com',
+            password='TestPassword123!', 
+            nome='Test User',
+            telefone='(11) 91234-5678'
+        )
+    
+    def test_home_view(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')
 
-        response = self.client.post(url, data)
+    def test_login_view(self):
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'login.html')
+
+    def test_login_email_view_get(self):
+        response = self.client.get(reverse('login-email'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'login-email.html')
+
+    def test_login_email_view_post_success(self):
+        response = self.client.post(reverse('login-email'), {
+            'username': 'test@example.com',
+            'password': 'TestPassword123!'
+        })
         self.assertEqual(response.status_code, 302)  # Redireciona para o dashboard
         self.assertRedirects(response, reverse('dashboard'))
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
 
-    def test_login_falha(self):
-        """Testa falha no login com credenciais inválidas"""
-        url = reverse('login')
-        data = {
-            'email': 'teste@exemplo.com',
-            'password': 'SenhaErrada'
-        }
+    def test_login_email_view_post_invalid_credentials(self):
+        response = self.client.post(reverse('login-email'), {
+            'username': 'test@example.com',
+            'password': 'WrongPassword!'
+        })
+        self.assertEqual(response.status_code, 200)  # Retorna ao login
+        self.assertContains(response, 'Credenciais inválidas. Tente novamente.')
 
-        response = self.client.post(url, data)
+    def test_login_email_view_post_register(self):
+        response = self.client.post(reverse('login-email'), {
+            'username': 'newuser@example.com',
+            'password': 'NewPassword123!',
+            'cadastro_form-0-nome': 'New User',
+            'cadastro_form-0-telefone': '(11) 91234-5678',
+            'cadastro_form-0-senha': 'NewPassword123!',
+            'cadastro_form-0-confirmacao_senha': 'NewPassword123!',
+        })
+        self.assertEqual(response.status_code, 302)  # Redireciona para o login
+        self.assertRedirects(response, reverse('login'))
+        self.assertTrue(Usuario.objects.filter(email='newuser@example.com').exists())
+
+    def test_cadastro_view_get(self):
+        response = self.client.get(reverse('cadastro'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Credenciais inválidas')
+        self.assertTemplateUsed(response, 'cadastro.html')
+
+    def test_cadastro_view_post_success(self):
+        response = self.client.post(reverse('cadastro'), {
+            'nome': 'New User',
+            'email': 'newuser@example.com',
+            'telefone': '(11) 91234-5678',
+            'senha': 'NewPassword123!',
+            'confirmacao_senha': 'NewPassword123!',
+        })
+        self.assertEqual(response.status_code, 302)  # Redireciona para o login
+        self.assertRedirects(response, reverse('login'))
+        self.assertTrue(Usuario.objects.filter(email='newuser@example.com').exists())
+
+    def test_dashboard_view(self):
+        self.client.login(email='test@example.com', password='TestPassword123!')
+        response = self.client.get(reverse('dashboard'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'dashboard.html')
+
+    def test_criar_partidas_view(self):
+        self.client.login(username='test@example.com', password='TestPassword123!')
+        response = self.client.get(reverse('criarPartidas'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'criarPartidas.html')
+
+    def test_agendamento_view(self):
+        self.client.login(username='test@example.com', password='TestPassword123!')
+        response = self.client.get(reverse('agendamento'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'agendamento.html')
