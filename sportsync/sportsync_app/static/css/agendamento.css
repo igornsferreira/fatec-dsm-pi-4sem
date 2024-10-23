@@ -10,6 +10,8 @@ body {
     display: flex;
     width: 100%;
     height: 100vh; 
+    margin: 0; /* Removendo a margem */
+    padding: 0; /* Removendo o padding se houver */
 }
 
 .left, .right {
@@ -52,7 +54,7 @@ body {
 
 .form-group {
     width: 100%;
-    max-width: 300px;
+    max-width: 500px;
     margin-bottom: 20px;
 }
 
@@ -98,5 +100,5 @@ body {
 }
 
 .login-button:hover {
-    background-color: #bbb;
+    background-color: #b58f12;
 }
