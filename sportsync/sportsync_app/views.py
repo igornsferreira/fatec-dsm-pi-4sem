@@ -5,6 +5,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import CadastroForm, LoginEmailForm
+from django.contrib.auth.mixins import LoginRequiredMixin 
 
 class HomeView(View):
     template_name = 'home.html'
@@ -59,7 +60,7 @@ class CadastroView(View):
 
         return render(request, self.template_name, {'form': form})
 
-class DashboardView(View):
+class DashboardView(LoginRequiredMixin, View):
     template_name = 'dashboard.html'
 
     def get(self, request):
