@@ -91,6 +91,8 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'sportsync_app.Usuario'
 
+LOGIN_URL = '/login/'  
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
