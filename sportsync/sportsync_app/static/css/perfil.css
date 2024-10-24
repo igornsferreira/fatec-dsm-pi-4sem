@@ -1,0 +1,101 @@
+/* Estilos globais */
+body {
+    background-color: rgba(34, 38, 47, 1);
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo da sidebar */
+.sidebar {
+    background-color: rgba(45, 52, 70, 1);
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar a {
+    color: #FFFFFF;
+    padding: 10px 0;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar a.active {
+    background-color: rgba(217, 152, 22, 1); 
+}
+
+.sidebar a:hover {
+    background-color: rgba(217, 152, 22, 1); 
+}
+
+/* Estilo do conteúdo principal */
+.content {
+    margin-left: 220px; /* Espaço para a sidebar */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.card {
+    background-color: rgba(45, 52, 70, 1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+}
+
+/* Estilo dos campos de formulário */
+.card input[type="text"], 
+.card input[type="number"], 
+.card input[type="date"], 
+.card input[type="password"], 
+.card input[type="email"] {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid rgba(217, 152, 22, 1); /* Bordas com a cor amarela */
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.card label {
+    color: rgba(217, 152, 22, 1); 
+    font-weight: bold;
+}
+
+/* Ajuste de altura uniforme nos campos de entrada */
+.card input[type="text"], 
+.card input[type="number"], 
+.card input[type="date"], 
+.card input[type="password"], 
+.card input[type="email"] {
+    height: 45px;
+    font-size: 16px;
+}
+
+/* Botão de editar */
+.btn-custom {
+    background-color: rgba(217, 152, 22, 1);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    display: block; 
+    width: 100%; /* Largura total do contêiner pai */
+    margin-bottom: 15px; /* Espaçamento entre botões ou elementos */
+}
+
+.btn-custom:hover {
+    background-color: rgba(217, 152, 22, 0.8);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}

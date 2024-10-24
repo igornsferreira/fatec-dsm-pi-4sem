@@ -91,3 +91,9 @@ class AgendamentoView(View):
 
     def get(self, request):
         return render(request, self.template_name)
+
+class PerfilView(View):
+    template_name = 'perfil.html'
+
+    def get(self, request):
+        return render(request, self.template_name)

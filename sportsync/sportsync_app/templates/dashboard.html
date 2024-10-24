@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
-    <title>Sidebar</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
             <a class="nav-link" href="{% url 'criarPartidas' %}"><i class="fas fa-plus-circle"></i> Crie uma partida</a>
             <a class="nav-link" href=""><i class="fas fa-search"></i> Encontre uma partida</a>
             <a class="nav-link" href=""><i class="fas fa-calendar-alt"></i> Minhas partidas</a>
-            <a class="nav-link" href=""><i class="fas fa-user"></i> Meu perfil</a>
+            <a class="nav-link" href="{% url 'perfil' %}"><i class="fas fa-user"></i> Meu perfil</a>
             <hr>
             <a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i> Sair</a>
         </div>
