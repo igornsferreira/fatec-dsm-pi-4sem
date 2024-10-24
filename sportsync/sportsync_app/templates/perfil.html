@@ -36,23 +36,21 @@
                     <form action="{% url 'perfil' %}" method="post">
                         {% csrf_token %}
                         <div class="row">
-                            <!-- Coluna da esquerda -->
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="nome" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" value="{{ usuario.nome }}" required>
+                                    <input type="text" class="form-control" id="nome" name="nome" value="{{ usuario.nome }}" disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label for="telefone" class="form-label">Telefone</label>
-                                    <input type="text" class="form-control" id="telefone" name="telefone" value="{{ usuario.telefone }}" required>
+                                    <input type="text" class="form-control" id="telefone" name="telefone" value="{{ usuario.telefone }}" disabled>
                                 </div>
                             </div>
-
-                            <!-- Coluna da direita -->
+                    
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" required>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label for="senha" class="form-label">Senha</label>
@@ -60,8 +58,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Botão de editar -->
+                    
                         <div class="col-sm-12">
                             <a href="" class="btn btn-custom mt-3">Editar</a>
                         </div>
