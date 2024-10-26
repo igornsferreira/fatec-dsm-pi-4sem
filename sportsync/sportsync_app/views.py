@@ -99,3 +99,10 @@ class PerfilView(LoginRequiredMixin, View):
     def get(self, request):
         usuario = request.user
         return render(request, self.template_name, {'usuario': usuario})
+    
+class EditarPerfilView(LoginRequiredMixin, View):
+    template_name = 'editarPerfil.html'
+
+    def get(self, request):
+        usuario = request.user
+        return render(request, self.template_name, {'usuario': usuario})
