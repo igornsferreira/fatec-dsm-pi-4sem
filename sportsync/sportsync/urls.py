@@ -12,5 +12,6 @@ urlpatterns = [
     path('dashboard/', login_required(views.DashboardView.as_view()), name='dashboard'),
     path('criarPartidas/', login_required(views.CriarPartidasView.as_view()), name='criarPartidas'),
     path('perfil/', login_required(views.PerfilView.as_view()), name='perfil'),
-    path('editarPerfil/', login_required(views.EditarPerfilView.as_view()), name='editarPerfil')
+    path('editarPerfil/', login_required(views.EditarPerfilView.as_view()), name='editarPerfil'),
+    path('logout/', login_required(views.LogoutView), name='logout'),
 ]

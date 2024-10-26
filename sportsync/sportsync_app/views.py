@@ -1,11 +1,12 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .models import Usuario
-from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth import login as auth_login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import CadastroForm, LoginEmailForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.urls import reverse
 
 class HomeView(View):
     template_name = 'home.html'
@@ -99,3 +100,8 @@ class EditarPerfilView(LoginRequiredMixin, View):
     def get(self, request):
         usuario = request.user
         return render(request, self.template_name, {'usuario': usuario})
+    
+def LogoutView(request):
+    """Faz logout do usuário."""
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
