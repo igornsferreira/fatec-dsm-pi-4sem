@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
-    <title>Meu Perfil</title>
+    <title>Editar Perfil</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <div class="sidebar">
             <a href=""><img src="{% static 'img/logo-comprido.png' %}" alt="Logo" width="120" class="mb-4"></a>
             <hr>
-            <a class="nav-link" href=""><i class="fas fa-home"></i> Home</a>
+            <a class="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home</a>
             <a class="nav-link" href="{% url 'criarPartidas' %}"><i class="fas fa-plus-circle"></i> Crie uma partida</a>
             <a class="nav-link" href=""><i class="fas fa-search"></i> Encontre uma partida</a>
             <a class="nav-link" href=""><i class="fas fa-calendar-alt"></i> Minhas partidas</a>
@@ -33,34 +33,34 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Meu Perfil</h4>
-                    <form action="{% url 'perfil' %}" method="post">
+                    <form action="{% url 'editarPerfil' %}" method="POST">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="nome" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" value="{{ usuario.nome }}" disabled>
+                                    <input type="text" class="form-control" id="nome" name="nome" value="{{ usuario.nome }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="telefone" class="form-label">Telefone</label>
-                                    <input type="text" class="form-control" id="telefone" name="telefone" value="{{ usuario.telefone }}" disabled>
+                                    <input type="text" class="form-control" id="telefone" name="telefone" value="{{ usuario.telefone }}">
                                 </div>
                             </div>
                     
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" disabled>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="senha" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="senha" name="senha" value="{{ usuario.senha }}" disabled>
+                                    <input type="password" class="form-control" id="senha" name="senha" value="{{ usuario.senha }}">
                                 </div>
                             </div>
                         </div>
                     
                         <div class="col-sm-12">
-                            <a href="" class="btn btn-custom mt-3">Salvar alterações</a>
+                            <button type="submit" class="btn btn-custom mt-3">Salvar alterações</button>
                         </div>
                     </form>
                 </div>

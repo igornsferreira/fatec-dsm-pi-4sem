@@ -100,6 +100,24 @@ class EditarPerfilView(LoginRequiredMixin, View):
     def get(self, request):
         usuario = request.user
         return render(request, self.template_name, {'usuario': usuario})
+
+    def post(self, request):
+        usuario = request.user
+        
+        nome = request.POST.get('nome')
+        telefone = request.POST.get('telefone')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        usuario.nome = nome
+        usuario.telefone = telefone
+        usuario.email = email
+
+        if senha:
+            usuario.set_password(senha)  
+
+        usuario.save()  
+        return redirect('perfil')  
     
 def LogoutView(request):
     """Faz logout do usuário."""
