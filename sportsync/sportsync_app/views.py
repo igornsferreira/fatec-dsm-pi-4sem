@@ -86,13 +86,6 @@ class CriarPartidasView(View):
         ]
         return render(request, self.template_name, {'quadras': quadras})
 
-class AgendamentoView(View):
-    template_name = 'agendamento.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-
 class PerfilView(LoginRequiredMixin, View):
     template_name = 'perfil.html'
 
