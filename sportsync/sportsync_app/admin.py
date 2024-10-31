@@ -1,11 +1,10 @@
 from django.contrib import admin
-from .models import Endereco, Usuario, Esporte, Evento, Partida, Quadra, UsuarioPartida, UsuarioEvento
+from .models import Usuario, Esporte, Endereco, Quadra, Partida, UsuarioPartida
 
-admin.site.register(Endereco)
+# Registro dos modelos no Django Admin
 admin.site.register(Usuario)
 admin.site.register(Esporte)
-admin.site.register(Evento)
-admin.site.register(Partida)
+admin.site.register(Endereco)
 admin.site.register(Quadra)
+admin.site.register(Partida)
 admin.site.register(UsuarioPartida)
-admin.site.register(UsuarioEvento)

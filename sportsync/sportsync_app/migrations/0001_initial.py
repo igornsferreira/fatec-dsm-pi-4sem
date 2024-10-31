@@ -23,9 +23,6 @@ class Migration(migrations.Migration):
                 ('numero', models.CharField(max_length=10)),
                 ('cidade', models.CharField(max_length=255)),
                 ('estado', models.CharField(max_length=255)),
-                ('pais', models.CharField(max_length=255)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
             ],
         ),
         migrations.CreateModel(
@@ -33,8 +30,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('nome', models.CharField(max_length=255)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
             ],
         ),
         migrations.CreateModel(
@@ -57,55 +52,30 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Evento',
+            name='Quadra',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('nome', models.CharField(max_length=255)),
-                ('descricao', models.TextField()),
-                ('data_inicio', models.DateTimeField()),
-                ('data_fim', models.DateTimeField()),
-                ('max_participantes', models.IntegerField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('disponibilidade', models.BooleanField(default=True)),
+                ('telefone', models.CharField(blank=True, max_length=15, null=True)),
                 ('endereco', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='sportsync_app.endereco')),
-                ('esporte', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sportsync_app.esporte')),
-                ('organizador', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('esportes', models.ManyToManyField(related_name='quadras', to='sportsync_app.esporte')),
             ],
         ),
         migrations.CreateModel(
             name='Partida',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('data_inicio', models.DateTimeField()),
-                ('data_fim', models.DateTimeField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('endereco', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='sportsync_app.endereco')),
-                ('evento', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='sportsync_app.evento')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Quadra',
-            fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('nome', models.CharField(max_length=255)),
-                ('disponibilidade', models.TextField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('endereco', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='sportsync_app.endereco')),
+                ('descricao', models.TextField()),
+                ('data', models.DateField()),
+                ('hora_inicio', models.TimeField()),
+                ('horario_fim', models.TimeField()),
+                ('max_participantes', models.IntegerField()),
+                ('curtidas', models.ManyToManyField(blank=True, related_name='partidas_curtidas', to=settings.AUTH_USER_MODEL)),
                 ('esporte', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sportsync_app.esporte')),
+                ('organizador', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='partidas', to=settings.AUTH_USER_MODEL)),
+                ('quadra', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='sportsync_app.quadra')),
             ],
-        ),
-        migrations.CreateModel(
-            name='UsuarioEvento',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sportsync_app.evento')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-            ],
-            options={
-                'unique_together': {('usuario', 'evento')},
-            },
         ),
         migrations.CreateModel(
             name='UsuarioPartida',
@@ -117,5 +87,10 @@ class Migration(migrations.Migration):
             options={
                 'unique_together': {('partida', 'usuario')},
             },
+        ),
+        migrations.AddField(
+            model_name='partida',
+            name='usuarios',
+            field=models.ManyToManyField(related_name='partidas_jogadas', through='sportsync_app.UsuarioPartida', to=settings.AUTH_USER_MODEL),
         ),
     ]

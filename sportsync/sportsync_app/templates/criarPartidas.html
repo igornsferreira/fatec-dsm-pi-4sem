@@ -34,9 +34,9 @@
             <table class="table table-dark table-striped mt-4">
                 <thead>
                     <tr>
-                        <th>Nome da Quadra</th>
+                        <th>ID</th>
+                        <th>Nome</th>
                         <th>Endereço</th>
-                        <th>Bairro</th>
                         <th>Telefone</th>
                         <th>Ação</th>
                     </tr>
@@ -44,9 +44,9 @@
                 <tbody>
                     {% for quadra in quadras %}
                     <tr>
+                        <td>{{ quadra.id }}</td>
                         <td>{{ quadra.nome }}</td>
                         <td>{{ quadra.endereco }}</td>
-                        <td>{{ quadra.bairro }}</td>
                         <td>{{ quadra.telefone }}</td>
                         <td>
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agendamentoModal" data-nome-quadra="{{ quadra.nome }}">Reservar</button>
