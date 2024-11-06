@@ -59,7 +59,7 @@ footer{
     top: 100%;
     width: 0;
     height: 2px;
-    background: green;
+    background: rgba(217, 152, 22, 1);;
     transition-duration: .5s;
 }
 
@@ -88,7 +88,7 @@ a{
 }
 
 a:hover{
-    color: green;
+    color: rgba(217, 152, 22, 1);;
 }
 
 ;.social-icons i:hover{
