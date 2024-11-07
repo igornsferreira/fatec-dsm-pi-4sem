@@ -12,7 +12,7 @@ footer {
 }
 
 .container-footer {
-    width: 100%;
+    width: 70%;
     max-width: 1148px;
     margin: auto;
     display: flex;
