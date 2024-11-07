@@ -5,27 +5,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Estilo da sidebar */
-.sidebar {
-    background-color: rgba(45, 52, 70, 1);
-    padding: 20px;
-    height: 100vh;
-}
-
-.sidebar a {
-    color: #FFFFFF;
-    padding: 10px 0;
-    text-decoration: none;
-    display: block;
-}
-
-.sidebar a.active {
-    background-color: rgba(217, 152, 22, 1); 
-}
-
-.sidebar a:hover {
-    background-color: rgba(217, 152, 22, 1); 
-}
 
 /* Estilo do conteúdo principal */
 .content {
