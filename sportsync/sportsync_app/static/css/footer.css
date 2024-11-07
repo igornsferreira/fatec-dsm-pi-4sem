@@ -1,110 +1,105 @@
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    font-size:16px;
-    color:white;
+    font-size: 16px;
+    color: white;
 }
 
-footer{
+footer {
     background: rgba(45, 52, 70, 1);
     padding-top: 50px;
 }
 
-.container-footer{
-    width: 1148px;
+.container-footer {
+    width: 100%;
+    max-width: 1148px;
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around; /* espaça igualmente */
+    flex-wrap: wrap; /* para responsividade */
 }
 
-.footer-content{
-    width: 33.3%;
+.footer-content {
+    width: 30%; /* ajusta para maior responsividade */
+    text-align: center; /* centraliza conteúdo */
+    padding: 0 15px; /* espaço interno */
 }
 
-.h3{
+.footer-content h3 {
     font-size: 28px;
     margin-bottom: 15px;
-    text-align: center;
 }
 
-.footer-content p{
-    width: 190px;
-    margin: auto;
-    padding: 7px;
+.footer-content p,
+.footer-content ul {
+    margin: 0;
+    padding: 7px 0;
+    text-align: center; 
 }
 
-.footer-content ul{
-    text-align: center;
-   
-}
-
-.list{
+.list {
     padding: 0;
 }
 
-.list li{
-    width: auto;
-    text-align: center;
-    list-style-type:none;
+.list li {
+    list-style-type: none;
     padding: 7px;
     position: relative;
 }
 
-.list li::before{
-    content:"";
+.list li::before {
+    content: "";
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 100%;
     width: 0;
     height: 2px;
-    background: rgba(217, 152, 22, 1);;
-    transition-duration: .5s;
+    background: rgba(217, 152, 22, 1);
+    transition-duration: 0.5s;
 }
 
-.list li:hover::before{
+.list li:hover::before {
     width: 70px;
 }
 
-.social-icons{
-    text-align: center;
+.social-icons {
     padding: 0;
+    text-align: center;
 }
 
-.social-icons li{
-    display:inline-block;
-    text-align:center;
+.social-icons li {
+    display: inline-block;
     padding: 5px;
 }
 
-.social-icons i{
+.social-icons i {
     color: white;
     font-size: 25px;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-a:hover{
-    color: rgba(217, 152, 22, 1);;
+a:hover {
+    color: rgba(217, 152, 22, 1);
 }
 
-;.social-icons i:hover{
-    color:black;
+.social-icons i:hover {
+    color: black;
 }
 
-.botton-bar{
+.botton-bar {
     background: orange;
-    text-align:center;
+    text-align: center;
     padding: 10px 0;
     margin-top: 50px;
 }
 
-.botton-bar p{
-    color:#343434;
-    margin:0;
-    font-size:16px;
-    padding:7px;
+.botton-bar p {
+    color: #343434;
+    font-size: 16px;
+    padding: 7px;
 }

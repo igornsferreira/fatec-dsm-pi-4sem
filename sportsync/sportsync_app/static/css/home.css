@@ -28,7 +28,7 @@ body {
 }
 
 .header .login-btn {
-    background-color: #f0a500;
+    background-color: #D99816;
     color: rgba(65, 61, 61, 1); 
     padding: 10px 20px;
     border: none;
@@ -61,7 +61,7 @@ body {
 }
 
 .about-section .cta-btn {
-    background-color: #f0a500;
+    background-color: #D99816;
     color: rgba(65, 61, 61, 1); 
     padding: 10px 20px;
     border: none;
@@ -91,7 +91,7 @@ body {
     left: 13px; 
     transform: translateY(-50%); 
     border-radius: 50%; 
-    background: rgba(217, 152, 22, 1); 
+    background: #D99816; 
     z-index: 0; 
 }
 
