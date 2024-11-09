@@ -13,5 +13,7 @@ urlpatterns = [
     path('criarPartidas/', login_required(views.CriarPartidasView.as_view()), name='criarPartidas'),
     path('perfil/', login_required(views.PerfilView.as_view()), name='perfil'),
     path('editarPerfil/', login_required(views.EditarPerfilView.as_view()), name='editarPerfil'),
-    path('logout/', login_required(views.LogoutView), name='logout'),
+    path('minhasPartidas/', login_required(views.MinhasPartidasView.as_view()), name='minhasPartidas'),
+    path('dashboardHome/', login_required(views.DashboardHomeView.as_view()), name='dashboardHome'),
+    path('logout/', login_required(views.LogoutView), name='logout')
 ]
