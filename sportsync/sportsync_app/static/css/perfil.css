@@ -1,35 +1,31 @@
-/* Estilos globais */
 body {
-    background-color: rgba(34, 38, 47, 1);
+    background-color: rgba(34, 38, 47, 1); 
     color: #FFFFFF;
     font-family: Arial, sans-serif;
 }
 
-
-/* Estilo do conteúdo principal */
 .content {
-    margin-left: 220px; /* Espaço para a sidebar */
+    margin-left: 220px; 
     padding: 20px;
     min-height: 100vh;
 }
 
 .card {
-    background-color: rgba(45, 52, 70, 1);
+    background-color: rgba(45, 52, 70, 1)!important;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #FFFFFF;
+    color: #FFFFFF; 
 }
 
-/* Estilo dos campos de formulário */
 .card input[type="text"], 
 .card input[type="number"], 
 .card input[type="date"], 
 .card input[type="password"], 
 .card input[type="email"] {
-    background-color: #FFFFFF;
-    color: #000000;
-    border: 1px solid rgba(217, 152, 22, 1); /* Bordas com a cor amarela */
+    background-color: rgba(85, 89, 106, 1);
+    color: #FFFFFF;
+    border: 1px solid rgba(217, 152, 22, 1); 
     padding: 10px;
     border-radius: 4px;
     width: 100%;
@@ -40,7 +36,6 @@ body {
     font-weight: bold;
 }
 
-/* Ajuste de altura uniforme nos campos de entrada */
 .card input[type="text"], 
 .card input[type="number"], 
 .card input[type="date"], 
@@ -50,9 +45,8 @@ body {
     font-size: 16px;
 }
 
-/* Botão de editar */
 .btn-custom {
-    background-color: rgba(217, 152, 22, 1);
+    background-color: rgba(217, 152, 22, 1) !important; 
     color: #FFFFFF;
     border: none;
     padding: 10px 20px;
@@ -60,15 +54,14 @@ body {
     transition: background-color 0.3s ease;
     font-size: 16px;
     display: block; 
-    width: 100%; /* Largura total do contêiner pai */
-    margin-bottom: 15px; /* Espaçamento entre botões ou elementos */
+    width: 100%; 
+    margin-bottom: 15px; 
 }
 
 .btn-custom:hover {
     background-color: rgba(217, 152, 22, 0.8);
 }
 
-/* Ajustes para telas menores */
 @media (max-width: 768px) {
     .content {
         margin-left: 0;
