@@ -1,12 +1,14 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
-from .models import Quadra
+from .models import Quadra, Esporte, Partida
 from django.contrib.auth import login as auth_login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import CadastroForm, LoginEmailForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 class HomeView(View):
     template_name = 'home.html'
@@ -67,12 +69,45 @@ class DashboardView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, self.template_name)
 
-class CriarPartidasView(View):
+class CriarPartidasView(LoginRequiredMixin, View):
     template_name = 'criarPartidas.html'
 
     def get(self, request):
-        quadras = Quadra.objects.all() 
-        return render(request, self.template_name, {'quadras': quadras})
+        quadras = Quadra.objects.all()
+        esportes = Esporte.objects.all()
+        return render(request, self.template_name, {'quadras': quadras, 'esportes': esportes})
+
+    def post(self, request):
+        quadra_id = request.POST.get('quadra_id')
+        esporte_id = request.POST.get('esporte')
+        data = request.POST.get('data')
+        hora_inicio = request.POST.get('hora_inicio')
+        horario_fim = request.POST.get('horario_fim')
+        max_participantes = request.POST.get('max_participantes')
+
+        if not quadra_id or not esporte_id or not data or not hora_inicio or not horario_fim or not max_participantes:
+            return render(request, self.template_name, {
+                'error': 'Todos os campos devem ser preenchidos.',
+                'quadras': Quadra.objects.all(),
+                'esportes': Esporte.objects.all(),
+            })
+
+        organizador = request.user
+
+        quadra = get_object_or_404(Quadra, id=quadra_id)
+        esporte = get_object_or_404(Esporte, id=esporte_id)
+
+        partida = Partida.objects.create(
+            organizador=organizador,
+            esporte=esporte,
+            data=data,
+            hora_inicio=hora_inicio,
+            horario_fim=horario_fim,
+            quadra=quadra,
+            max_participantes=max_participantes,
+        )
+
+        return redirect('dashboard')
 
 class PerfilView(LoginRequiredMixin, View):
     template_name = 'perfil.html'
