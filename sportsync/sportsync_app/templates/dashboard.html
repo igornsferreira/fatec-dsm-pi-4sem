@@ -17,10 +17,10 @@
         <div class="sidebar">
             <a href=""><img src="{% static 'img/logo-comprido.png' %}" alt="Logo" width="140" class="mb-4"></a>
             <hr>
-            <a class="active nav-link" href=""><i class="fas fa-home"></i> Home</a>
+            <a class="active nav-link" href="{% url 'dashboardHome' %}"><i class="fas fa-home"></i> Home</a>
             <a class="nav-link" href="{% url 'criarPartidas' %}"><i class="fas fa-plus-circle"></i> Crie uma partida</a>
             <a class="nav-link" href=""><i class="fas fa-search"></i> Encontre uma partida</a>
-            <a class="nav-link" href=""><i class="fas fa-calendar-alt"></i> Minhas partidas</a>
+            <a class="nav-link" href="{% url 'minhasPartidas' %}"><i class="fas fa-calendar-alt"></i> Minhas partidas</a>
             <a class="nav-link" href="{% url 'perfil' %}"><i class="fas fa-user"></i> Meu perfil</a>
             <hr>
             <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>

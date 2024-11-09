@@ -41,8 +41,8 @@ body {
     border: 1px solid #f0a500;
     padding: 15px;
     margin-top: 10px;
-    width: 100%; /* Agora as caixas ocupam toda a largura disponível */
-    max-width: 600px; /* Limite máximo para não ficar muito largo */
+    width: 100%;
+    max-width: 600px; 
 }
 
 .form-control:focus {
@@ -54,13 +54,13 @@ body {
 
 #right .p-4 {
     width: 100%;
-    max-width: 600px; /* Limite máximo para o formulário */
+    max-width: 600px; 
 }
 
 .btn-warning {
     background-color: #f0a500;
     border: none;
-    width: 100%; /* Botão ocupa toda a largura */
+    width: 100%; 
     padding: 10px;
     font-size: 18px;
     margin-top: 20px;

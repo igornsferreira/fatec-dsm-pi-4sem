@@ -1,14 +1,16 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views import View
-from .models import Quadra, Esporte, Partida
-from django.contrib.auth import login as auth_login, logout
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from .forms import CadastroForm, LoginEmailForm
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login as auth_login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.urls import reverse
-from django.shortcuts import get_object_or_404
 from django.utils import timezone
+
+
+from django.views import View
+from django.views.generic import ListView
+
+from .models import Quadra, Esporte, Partida
+from .forms import CadastroForm, LoginEmailForm
 
 class HomeView(View):
     template_name = 'home.html'
@@ -58,7 +60,7 @@ class CadastroView(View):
         if form.is_valid():
             usuario = form.save()  
             backend = 'allauth.account.auth_backends.AuthenticationBackend'  
-            login(request, usuario, backend=backend)
+            auth_login(request, usuario, backend=backend)
             return redirect('dashboard') 
 
         return render(request, self.template_name, {'form': form})
@@ -141,7 +143,33 @@ class EditarPerfilView(LoginRequiredMixin, View):
         usuario.save()  
         return redirect('perfil')  
     
+class MinhasPartidasView(ListView):
+    model = Partida
+    template_name = 'minhasPartidas.html'
+    context_object_name = 'partidas'
+
+    def get_queryset(self):
+        return Partida.objects.filter(organizador=self.request.user)
+
+    def post(self, request, *args, **kwargs):
+        partida_id = request.POST.get('partida_id')
+        if partida_id:
+            partida = get_object_or_404(Partida, id=partida_id)
+
+            if partida.organizador != request.user and request.user not in partida.usuarios.all():
+                return HttpResponseForbidden("Você não tem permissão para excluir esta partida.")
+
+            partida.delete()
+
+        return redirect('minhasPartidas')
+    
 def LogoutView(request):
     """Faz logout do usuário."""
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
+class DashboardHomeView(LoginRequiredMixin, View):
+    template_name = 'dashboardHome.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
