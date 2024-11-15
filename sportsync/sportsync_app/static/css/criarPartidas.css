@@ -5,36 +5,26 @@ body {
 }
 
 
-.content {
+.main-content {
+    background-color: rgba(45, 52, 70, 1);
+    border: 1px solid #1b1a1a;
+    border-radius: 10px; 
     padding: 20px;
-    max-width: 1300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-.footer {
-    background-color: #2D313A;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+.main-content h2 {
+    color: #ffffff; 
+    font-weight: bold;
+    padding: 10px;
+}
+
+.main-table {
     width: 100%;
-}
-
-.footer a {
-    color: #fff;
-    margin: 0 10px;
-}
-
-.table {
-    color: #FFFFFF;
-    background-color: #2e2e3a;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.table th, .table td {
-    vertical-align: middle;
+    border-collapse: collapse;
+    color: white; 
+    border-radius: 10px; 
+    overflow: hidden; 
 }
 
 .table .btn {
@@ -48,6 +38,21 @@ body {
 .table .btn:hover {
     background-color: #9F7A2F;
 }
+
+/* Cabeçalho*/
+.main-table thead th {
+    background-color: rgba(34, 38, 47, 1); 
+    color: white; 
+    padding: 8px;
+    text-align: left;
+    border-bottom: 2px solid #444;
+}
+
+.main-table tbody td {
+    padding: 10px;
+    border-bottom: 10px solid rgba(45, 52, 70, 1); 
+}
+
 
 .modal-content {
     background-color: rgba(45, 52, 70, 1);
