@@ -5,12 +5,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils import timezone
 
-
 from django.views import View
 from django.views.generic import ListView
 
 from .models import Quadra, Esporte, Partida
 from .forms import CadastroForm, LoginEmailForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class HomeView(View):
     template_name = 'home.html'
@@ -178,4 +179,18 @@ class EncontrePartidasView(LoginRequiredMixin, View):
     template_name = 'encontrePartidas.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        partidas = Partida.objects.all()  
+        context = {
+            'partidas': partidas,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, partida_id=None):
+        partida = get_object_or_404(Partida, id=partida_id)  
+
+        if request.user in partida.curtidas.all():
+            partida.curtidas.remove(request.user)  
+        else:
+            partida.curtidas.add(request.user)  
+
+        return HttpResponseRedirect(reverse('encontrePartidas'))

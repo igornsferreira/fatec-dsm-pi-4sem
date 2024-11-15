@@ -9,9 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/encontrePartidas.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <title>Encontre Partidas</title>
 </head>
 
@@ -19,6 +18,53 @@
     <div class="d-flex">
         <!-- Sidebar -->
         {% include "dashboard.html" %}
+
+        <!-- Conteúdo principal -->
+        <div class="container mt-5">
+            <h2 class="mb-4">Encontre Partidas</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Organizador</th>
+                        <th>Local</th>
+                        <th>Modalidade</th>
+                        <th>Data</th>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th>Max. Participantes</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for partida in partidas %}
+                    <tr>
+                        <td>{{ partida.id }}</td>
+                        <td>{{ partida.organizador.nome }}</td>
+                        <td>{{ partida.quadra }}</td>
+                        <td>{{ partida.esporte }}</td>
+                        <td>{{ partida.data }}</td>
+                        <td>{{ partida.hora_inicio|date:"H:i" }}</td>
+                        <td>{{ partida.horario_fim|date:"H:i" }}</td>
+                        <td>{{ partida.max_participantes }}</td>
+                        <td>
+                            <!-- Formulário de curtir para cada partida -->
+                            <form method="post" action="{% url 'curtir_partida' partida.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link text-danger">
+                                    {% if request.user in partida.curtidas.all %}
+                                        <i class="fas fa-heart"></i>  <!-- Coração preenchido se o usuário já curtiu -->
+                                    {% else %}
+                                        <i class="far fa-heart"></i>  <!-- Coração vazio se o usuário não curtiu -->
+                                    {% endif %}
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->

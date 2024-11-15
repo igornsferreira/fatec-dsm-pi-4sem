@@ -1,0 +1,10 @@
+.fa-heart {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.fa-heart.text-danger {
+    color: red;
+}
+.fa-heart.text-white {
+    color: white;
+}

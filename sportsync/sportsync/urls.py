@@ -16,5 +16,6 @@ urlpatterns = [
     path('minhasPartidas/', login_required(views.MinhasPartidasView.as_view()), name='minhasPartidas'),
     path('dashboardHome/', login_required(views.DashboardHomeView.as_view()), name='dashboardHome'),
     path('encontrePartidas/', login_required(views.EncontrePartidasView.as_view()), name='encontrePartidas'),
+    path('encontrePartidas/<uuid:partida_id>/', login_required(views.EncontrePartidasView.as_view()), name='curtir_partida'),
     path('logout/', login_required(views.LogoutView), name='logout')
 ]
