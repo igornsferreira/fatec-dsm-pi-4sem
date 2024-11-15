@@ -173,3 +173,9 @@ class DashboardHomeView(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, self.template_name)
+    
+class EncontrePartidasView(LoginRequiredMixin, View):
+    template_name = 'encontrePartidas.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
