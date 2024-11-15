@@ -20,9 +20,9 @@
         {% include "dashboard.html" %}
 
         <!-- Conteúdo principal -->
-        <div class="container mt-5">
+        <div class="container mt-5 main-content">
             <h2 class="mb-4">Encontre Partidas</h2>
-            <table class="table table-striped">
+            <table class="table main-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -48,14 +48,13 @@
                         <td>{{ partida.horario_fim|date:"H:i" }}</td>
                         <td>{{ partida.max_participantes }}</td>
                         <td>
-                            <!-- Formulário de curtir para cada partida -->
                             <form method="post" action="{% url 'curtir_partida' partida.id %}">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-link text-danger">
                                     {% if request.user in partida.curtidas.all %}
-                                        <i class="fas fa-heart"></i>  <!-- Coração preenchido se o usuário já curtiu -->
+                                    <i class="fas fa-heart"></i>
                                     {% else %}
-                                        <i class="far fa-heart"></i>  <!-- Coração vazio se o usuário não curtiu -->
+                                    <i class="far fa-heart"></i>
                                     {% endif %}
                                 </button>
                             </form>
@@ -64,6 +63,7 @@
                     {% endfor %}
                 </tbody>
             </table>
+
         </div>
     </div>
 
