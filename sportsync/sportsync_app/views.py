@@ -1,17 +1,19 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login as auth_login, logout, authenticate
-from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils import timezone
-
 from django.views import View
 from django.views.generic import ListView
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from uuid import UUID
 
 from .models import Quadra, Esporte, Partida
 from .forms import CadastroForm, LoginEmailForm
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+
 
 class HomeView(View):
     template_name = 'home.html'
@@ -78,6 +80,23 @@ class CriarPartidasView(LoginRequiredMixin, View):
     def get(self, request):
         quadras = Quadra.objects.all()
         esportes = Esporte.objects.all()
+
+        pesquisa = request.GET.get('pesquisa', '')
+
+        if pesquisa:
+            try:
+                pesquisa_uuid = UUID(pesquisa)
+                quadras = quadras.filter(id=pesquisa_uuid)
+            except ValueError:
+                quadras = quadras.filter(
+                    Q(nome__icontains=pesquisa) |  
+                    Q(telefone__icontains=pesquisa) |  
+                    Q(endereco__rua__icontains=pesquisa) |  
+                    Q(endereco__bairro__icontains=pesquisa) |  
+                    Q(endereco__cidade__icontains=pesquisa) |  
+                    Q(endereco__estado__icontains=pesquisa)  
+            )
+
         return render(request, self.template_name, {'quadras': quadras, 'esportes': esportes})
 
     def post(self, request):
@@ -150,8 +169,22 @@ class MinhasPartidasView(ListView):
     context_object_name = 'partidas'
 
     def get_queryset(self):
-        return Partida.objects.filter(organizador=self.request.user)
-
+        queryset = Partida.objects.filter(organizador=self.request.user)
+        
+        pesquisa = self.request.GET.get('pesquisa', '')
+        
+        if pesquisa:
+            queryset = queryset.filter(
+                Q(id__icontains=pesquisa) |               
+                Q(quadra__nome__icontains=pesquisa) |     
+                Q(esporte__nome__icontains=pesquisa) |    
+                Q(data__icontains=pesquisa) |             
+                Q(hora_inicio__icontains=pesquisa) |      
+                Q(horario_fim__icontains=pesquisa)        
+            )
+        
+        return queryset
+        
     def post(self, request, *args, **kwargs):
         partida_id = request.POST.get('partida_id')
         if partida_id:
@@ -179,18 +212,31 @@ class EncontrePartidasView(LoginRequiredMixin, View):
     template_name = 'encontrePartidas.html'
 
     def get(self, request):
-        partidas = Partida.objects.all()  
+        partidas = Partida.objects.all()
+
+        filtrar_curtidas = request.GET.get('curtidas')
+        if filtrar_curtidas == 'curtidas':  
+            partidas = partidas.filter(curtidas=request.user)
+
+        pesquisa = request.GET.get('pesquisa')
+        if pesquisa:
+            partidas = partidas.filter(
+                Q(organizador__nome__icontains=pesquisa) |
+                Q(quadra__nome__icontains=pesquisa) |
+                Q(esporte__nome__icontains=pesquisa)
+            )
+
         context = {
-            'partidas': partidas,
+            'partidas': partidas.distinct(),  
         }
         return render(request, self.template_name, context)
 
     def post(self, request, partida_id=None):
-        partida = get_object_or_404(Partida, id=partida_id)  
+        partida = get_object_or_404(Partida, id=partida_id)
 
         if request.user in partida.curtidas.all():
-            partida.curtidas.remove(request.user)  
+            partida.curtidas.remove(request.user)
         else:
-            partida.curtidas.add(request.user)  
+            partida.curtidas.add(request.user)
 
         return HttpResponseRedirect(reverse('encontrePartidas'))
