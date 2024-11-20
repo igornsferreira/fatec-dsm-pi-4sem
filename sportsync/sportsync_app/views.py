@@ -44,7 +44,7 @@ class LoginEmailView(LoginView):
 
             if user is not None:
                 auth_login(request, user)
-                return redirect('dashboard')  
+                return redirect('criarPartidas')  
 
             form.add_error(None, 'Credenciais inválidas. Tente novamente.')  
 
@@ -64,15 +64,9 @@ class CadastroView(View):
             usuario = form.save()  
             backend = 'allauth.account.auth_backends.AuthenticationBackend'  
             auth_login(request, usuario, backend=backend)
-            return redirect('dashboard') 
+            return redirect('criarPartidas') 
 
         return render(request, self.template_name, {'form': form})
-
-class DashboardView(LoginRequiredMixin, View):
-    template_name = 'dashboard.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
 
 class CriarPartidasView(LoginRequiredMixin, View):
     template_name = 'criarPartidas.html'
@@ -129,7 +123,7 @@ class CriarPartidasView(LoginRequiredMixin, View):
             max_participantes=max_participantes,
         )
 
-        return redirect('dashboard')
+        return redirect('minhasPartidas')
 
 class PerfilView(LoginRequiredMixin, View):
     template_name = 'perfil.html'
@@ -201,12 +195,6 @@ def LogoutView(request):
     """Faz logout do usuário."""
     logout(request)
     return HttpResponseRedirect(reverse('home'))
-
-class DashboardHomeView(LoginRequiredMixin, View):
-    template_name = 'dashboardHome.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
     
 class EncontrePartidasView(LoginRequiredMixin, View):
     template_name = 'encontrePartidas.html'
