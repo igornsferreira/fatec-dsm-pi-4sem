@@ -25,4 +25,4 @@ class CadastroViewTest(TestCase):
             'senha': '123',
             'confirmacao_senha': '123',
         })
-        self.assertContains(response, 'Este campo é obrigatório', status_code=200)
+        self.assertContains(response, 'This field is required.', status_code=200)
