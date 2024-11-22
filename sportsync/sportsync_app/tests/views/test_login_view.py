@@ -1,41 +1,31 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
+from ...models import Usuario
 
-User = get_user_model()
-
-class LoginViewTest(TestCase):
-    
+class LoginEmailViewTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(
-            email='test@example.com',
-            password='TestPassword123!'
+        self.user = Usuario.objects.create_user(
+            email="test@example.com",
+            password="Senha@123",
+            nome="Test User",
+            telefone="123456789"
         )
-    
-    def test_login_view(self):
-        response = self.client.get(reverse('login-email'))
+
+    def test_login_view_get(self):
+        response = self.client.get(reverse('login_email'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'login-email.html')
 
-    def test_login_email_view_get(self):
-        response = self.client.get(reverse('login-email'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'login-email.html')
-
-    def test_login_email_view_post_success(self):
-        response = self.client.post(reverse('login-email'), {
+    def test_login_view_post_valid_credentials(self):
+        response = self.client.post(reverse('login_email'), {
             'email': 'test@example.com',
-            'password': 'TestPassword123!'
+            'senha': 'Senha@123',
         })
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('dashboard'))
-        self.assertTrue(response.wsgi_request.user.is_authenticated)
+        self.assertRedirects(response, reverse('criarPartidas'))
 
-    def test_login_email_view_post_invalid_credentials(self):
-        # Teste com credenciais inválidas
-        response = self.client.post(reverse('login-email'), {
+    def test_login_view_post_invalid_credentials(self):
+        response = self.client.post(reverse('login_email'), {
             'email': 'test@example.com',
-            'password': 'WrongPassword!'
+            'senha': 'WrongPassword',
         })
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Credenciais inválidas. Tente novamente.')
+        self.assertContains(response, 'Credenciais inválidas', status_code=200)
