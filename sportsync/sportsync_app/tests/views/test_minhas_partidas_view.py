@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from ...models import Usuario, Partida
+from ...models import Usuario, Partida, Esporte
 
 class MinhasPartidasViewTest(TestCase):
     def setUp(self):
@@ -10,9 +10,11 @@ class MinhasPartidasViewTest(TestCase):
             nome="Test User",
             telefone="123456789"
         )
+        self.esporte = Esporte.objects.create(nome="Futebol")
         self.partida = Partida.objects.create(
             organizador=self.user,
-            esporte_id=1,
+            # esporte_id=1,
+            esporte=self.esporte,
             data="2024-12-01",
             hora_inicio="10:00:00",
             horario_fim="12:00:00",

@@ -3,9 +3,11 @@ from django.urls import path, include
 from sportsync_app import views
 from django.contrib.auth.decorators import login_required
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),
+    path('', include('sportsync_app.urls')),  # Rotas de sportsync_app
     path('login/', views.LoginView.as_view(), name='login'),
     path('login-email/', views.LoginEmailView.as_view(), name='login-email'),
     path('cadastro/', views.CadastroView.as_view(), name='cadastro'),
