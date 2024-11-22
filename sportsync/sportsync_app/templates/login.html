@@ -15,7 +15,9 @@
             <img src="{% static 'img/logo-home.png' %}" alt="Logo Login" />  
             <h2>Faça o login ou registre-se em segundos</h2>
             <p>Use seu e-mail ou outra plataforma de identificação para entrar no SportSync</p>
-            <button onclick="location.href='#'">Continuar com o Google</button> 
+            <a href="{% url 'socialaccount_login' 'google' %}" class="btn btn-danger">
+                <button onclick="location.href='#'">Continuar com o Google</button>
+            </a> 
             <button onclick="location.href='#'">Continuar com o Facebook</button> 
             <button onclick="location.href='{% url 'login-email' %}'">Continuar com o Email</button>
             <a href="{% url 'cadastro' %}">Cadastre-se manualmente</a>

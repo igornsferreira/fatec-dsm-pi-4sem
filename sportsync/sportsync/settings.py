@@ -91,6 +91,15 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'sportsync_app.Usuario'
 
+LOGIN_REDIRECT_URL = '/'  # Redireciona após o login
+LOGOUT_REDIRECT_URL = '/'  # Redireciona após o logout
+ACCOUNT_LOGOUT_ON_GET = True  # Logout com GET em vez de POST
+
+
+SOCIAL_AUTH_GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
+
+
 LOGIN_URL = '/login/'  
 
 # Password validation
