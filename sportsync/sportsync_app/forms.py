@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 import re
 from .models import Usuario
 
+
 class CadastroForm(forms.ModelForm):
     senha = forms.CharField(widget=forms.PasswordInput, label='Senha', max_length=128)
     confirmacao_senha = forms.CharField(widget=forms.PasswordInput, label='Confirme sua senha', max_length=128)

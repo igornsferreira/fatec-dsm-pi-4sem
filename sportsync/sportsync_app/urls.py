@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import (
     HomeView,
+    LoginView,
     LoginEmailView,
     CadastroView,
     CriarPartidasView,
@@ -11,7 +12,8 @@ from .views import (
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('login/', LoginEmailView.as_view(), name='login_email'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('login-email/', LoginEmailView.as_view(), name='login_email'),
     path('cadastro/', CadastroView.as_view(), name='cadastro'),
     path('criar-partidas/', CriarPartidasView.as_view(), name='criarPartidas'),
     path('minhas-partidas/', MinhasPartidasView.as_view(), name='minhasPartidas'),

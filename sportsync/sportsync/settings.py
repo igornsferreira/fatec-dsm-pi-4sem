@@ -16,7 +16,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -34,13 +33,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.sites', 
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
 
      # MY APPS
     'sportsync_app',
 ]
 
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,13 +88,34 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'sportsync_app.Usuario'
 
-LOGIN_REDIRECT_URL = '/'  # Redireciona após o login
-LOGOUT_REDIRECT_URL = '/'  # Redireciona após o logout
-ACCOUNT_LOGOUT_ON_GET = True  # Logout com GET em vez de POST
+SOCIALACCOUNT_PROVIDERS = {
+   'google': {
+        'SCOPE': ['email', 'profile'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'OAUTH_PKCE_ENABLED': True, 
+        'CLIENT_ID': os.getenv('GOOGLE_CLIENT_ID'), 
+        'SECRET_KEY': os.getenv('GOOGLE_CLIENT_SECRET'),  
+        'FIELDS': ['email', 'first_name', 'last_name'], 
+        'EXTRA_DATA': ['first_name', 'last_name'],  
+    }
+}
 
+SITE_ID = 2
 
-SOCIAL_AUTH_GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
-SOCIAL_AUTH_GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+LOGIN_REDIRECT_URL = '/'  
+LOGOUT_REDIRECT_URL = '/'  
+ACCOUNT_LOGOUT_ON_GET = True  
+SOCIAL_AUTH_GOOGLE_REDIRECT_URI = 'http://127.0.0.1:8000/accounts/google/login/callback/'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_AUTO_SIGNUP = True
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True  
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  
+ACCOUNT_USERNAME_REQUIRED = False  
+ACCOUNT_EMAIL_REQUIRED = True  
+SOCIALACCOUNT_QUERY_EMAIL = True  
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  
 
 
 LOGIN_URL = '/login/'  
@@ -124,9 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
