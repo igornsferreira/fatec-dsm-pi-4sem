@@ -1,6 +1,6 @@
-# SportSync | PI do 4º semestre de 2024 | DSM - Fatec Araras
+# **SportSync | PI do 4º semestre de 2024 | DSM - Fatec Araras**
 
-**SportSync** é uma plataforma desenvolvida em Django com o objetivo de facilitar a gestão de eventos esportivos para organizadores e atletas amadores. 
+**SportSync** é uma plataforma desenvolvida em Django para facilitar a gestão de eventos esportivos, focada em organizadores e atletas amadores.
 
 ## Participantes
 
@@ -18,49 +18,94 @@
 
 ## Configuração do Ambiente e Execução do Projeto
 
-Este projeto está sendo desenvolvido utilizando **Python**, **Django** e **SQLite** como banco de dados. Siga as instruções abaixo para configurar seu ambiente de desenvolvimento e executar o projeto.
+Este projeto utiliza **Python**, **Django**, e **SQLite** para o banco de dados. Siga as etapas abaixo para configurar seu ambiente de desenvolvimento e rodar a aplicação localmente.
 
 ### Pré-requisitos
 
-Antes de começar, verifique se você possui os seguintes pré-requisitos instalados:
+Antes de começar, verifique se você tem as seguintes ferramentas instaladas:
 
 - **Python** (versão 3.8 ou superior)
-- **Django** (instalado via `pip`)
+- **Django** (instalado via pip)
 - **SQLite** (geralmente incluído com a instalação do Python)
 
 ### Configuração do Ambiente e Execução (Windows)
 
-Siga os passos abaixo para configurar o ambiente e iniciar a aplicação:
-
 1. **Clone o repositório do projeto**:
+    
     ```bash
     git clone https://github.com/igornsferreira/fatec-dsm-pi-4sem.git
     ```
 
-2. **Navegue até o diretório do projeto**:
+2. **Acesse o diretório do projeto**:
+    
     ```bash
     cd fatec-dsm-pi-4sem
     ```
 
-3. **Crie um ambiente virtual Python e ative-o**:
+3. **Crie e ative o ambiente virtual**:
+    
     ```bash
     python -m venv venv
-    venv\Scripts\activate.bat
+    source venv/bin/activate  # Linux/Mac
+    venv\Scripts\activate.bat  # Windows
     ```
 
 4. **Instale as dependências do projeto**:
+    
     ```bash
     pip install -r requirements.txt
     ```
 
-5. **Aplique as migrações do Django**:
+5. **Crie um arquivo `.env` com as variáveis necessárias**:
+
+    No diretório raiz do projeto, crie um arquivo `.env` com o seguinte conteúdo:
+
+    ```env
+    SECRET_KEY='sua_chave_secreta_aqui'
+    DEBUG=True
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='sua_google_oauth2_key'
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='seu_google_oauth2_secret'
+    GOOGLE_CLIENT_ID='seu_google_client_id'
+    GOOGLE_CLIENT_SECRET='seu_google_client_secret'
+    ```
+
+6. **Aplique as migrações do Django**:
+
     ```bash
     python manage.py migrate
     ```
 
-6. **Inicie o servidor Django**:
+7. **Crie um superusuário**:
+
+    Para acessar o painel administrativo do Django, crie um superusuário com o comando:
+
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+8. **Configure o provedor Google no Django Admin**:
+   
+   Após rodar o servidor pela primeira vez, acesse o Django Admin (geralmente em `http://127.0.0.1:8000/admin/`), e registre o provedor Google da seguinte forma:
+   
+   - **Vá até `Social Applications`** no painel administrativo.
+   - **Crie um novo aplicativo social**, escolhendo o **Google** como provedor.
+   - Preencha os campos conforme abaixo, utilizando as chaves do `.env`:
+   
+     | Campo            | Valor (exemplo)                                        |
+     |------------------|--------------------------------------------------------|
+     | provider         | google                                                 |
+     | name             | Google OAuth                                           |
+     | client_id        | (SOCIAL_AUTH_GOOGLE_OAUTH2_KEY)                        |
+     | secret           | (SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET)                     |
+     | key              | (SOCIAL_AUTH_GOOGLE_OAUTH2_KEY)                        |
+     | provider_id      | (Valor padrão)                                         |
+     | settings         | (Deixe vazio)                                          |
+   
+
+9. **Inicie o servidor Django**:
+
     ```bash
     python manage.py runserver
     ```
 
-Agora você deve ser capaz de acessar a aplicação no seu navegador.
+Agora você deve ser capaz de acessar a aplicação no seu navegador através de `http://127.0.0.1:8000/`.
