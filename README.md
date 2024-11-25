@@ -63,8 +63,6 @@ Antes de começar, verifique se você tem as seguintes ferramentas instaladas:
     ```env
     SECRET_KEY='sua_chave_secreta_aqui'
     DEBUG=True
-    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='sua_google_oauth2_key'
-    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='seu_google_oauth2_secret'
     GOOGLE_CLIENT_ID='seu_google_client_id'
     GOOGLE_CLIENT_SECRET='seu_google_client_secret'
     ```
